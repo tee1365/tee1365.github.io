@@ -64,6 +64,44 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-eslint问题整理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/10/eslint%E9%97%AE%E9%A2%98%E6%95%B4%E7%90%86/" class="article-date">
+  <time datetime="2020-08-10T08:23:09.000Z" itemprop="datePublished">08-10-2020</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/10/eslint%E9%97%AE%E9%A2%98%E6%95%B4%E7%90%86/">eslint errors(updating)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-error-Don’t-use-as-a-type-actually-means-“any-non-nullish-value”"><a href="#1-error-Don’t-use-as-a-type-actually-means-“any-non-nullish-value”" class="headerlink" title="1.  error  Don’t use {} as a type. {} actually means “any non-nullish value”"></a>1.  error  Don’t use <code>{}</code> as a type. <code>{}</code> actually means “any non-nullish value”</h2><p>  用<code>Record&lt;string, unknown&gt;</code>代替{}.</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//incorrect</span></span><br><span class="line">post: <span class="function">(<span class="params">url: string, body: &#123;&#125;</span>) =&gt;</span></span><br><span class="line">axios.post(url, body).then(responseBody)</span><br><span class="line"></span><br><span class="line"><span class="comment">//correct</span></span><br><span class="line">post: <span class="function">(<span class="params">url: string, body: Record&lt;string, unknown&gt;</span>) =&gt;</span></span><br><span class="line">axios.post(url, body).then(responseBody)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://tee1365.github.io/2020/08/10/eslint%E9%97%AE%E9%A2%98%E6%95%B4%E7%90%86/" data-id="ckdo90vee0000jww82lhmes6c" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Creating-new-blog-1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/08/09/Creating-new-blog-1/" class="article-date">
@@ -175,6 +213,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/08/10/eslint%E9%97%AE%E9%A2%98%E6%95%B4%E7%90%86/">eslint errors(updating)</a>
+          </li>
         
           <li>
             <a href="/2020/08/09/Creating-new-blog-1/">Creating New Blog 1</a>
