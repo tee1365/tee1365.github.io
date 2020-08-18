@@ -15,7 +15,7 @@
 <meta property="og:description" content="updating…">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-08-10T08:23:09.000Z">
-<meta property="article:modified_time" content="2020-08-12T04:53:18.058Z">
+<meta property="article:modified_time" content="2020-08-17T08:23:54.003Z">
 <meta property="article:author" content="Justin Song">
 <meta name="twitter:card" content="summary">
   
@@ -96,6 +96,8 @@
 
 <h3 id="2-Do-not-access-Object-prototype-method-‘hasOwnProperty’-from-target-object"><a href="#2-Do-not-access-Object-prototype-method-‘hasOwnProperty’-from-target-object" class="headerlink" title="2. Do not access Object.prototype method ‘hasOwnProperty’ from target object"></a>2. Do not access Object.prototype method ‘hasOwnProperty’ from target object</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// incorrect</span></span><br><span class="line">data.errors.hasOwnProperty(<span class="string">"id"</span>)</span><br><span class="line"><span class="comment">// correct</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.hasOwnProperty.call(data.errors,<span class="string">"id"</span>)</span><br></pre></td></tr></table></figure>
 
+<h2 id="frontend"><a href="#frontend" class="headerlink" title="frontend"></a>frontend</h2><h3 id="Type-‘unknown’-is-not-assignable-to-type-‘ReactNode’"><a href="#Type-‘unknown’-is-not-assignable-to-type-‘ReactNode’" class="headerlink" title="Type ‘unknown’ is not assignable to type ‘ReactNode’"></a>Type ‘unknown’ is not assignable to type ‘ReactNode’</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// incorrect, need to specify Object.values' type</span></span><br><span class="line"><span class="built_in">Object</span>.values(error.data.errors)  </span><br><span class="line">  .flat()</span><br><span class="line">  .map(<span class="function">(<span class="params">el, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Message.Item</span> <span class="attr">key</span>=<span class="string">&#123;index&#125;</span>&gt;</span>&#123;el&#125;<span class="tag">&lt;/<span class="name">Message.Item</span>&gt;</span></span>;</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//correct</span></span><br><span class="line"><span class="built_in">Object</span>.values&lt;string&gt;(error.data.errors)  </span><br><span class="line">  .flat()</span><br><span class="line">  .map(<span class="function">(<span class="params">el, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Message.Item</span> <span class="attr">key</span>=<span class="string">&#123;index&#125;</span>&gt;</span>&#123;el&#125;<span class="tag">&lt;/<span class="name">Message.Item</span>&gt;</span></span>;</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
 <h2 id="Net-Core"><a href="#Net-Core" class="headerlink" title=".Net Core"></a>.Net Core</h2><h3 id="1-’“Value”是-命名空间，但此处被当做-类型-来使用"><a href="#1-’“Value”是-命名空间，但此处被当做-类型-来使用" class="headerlink" title="1.’“Value”是 命名空间，但此处被当做 类型 来使用"></a>1.’“Value”是 命名空间，但此处被当做 类型 来使用</h3><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Application.Value</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IValueService</span> &#123;</span><br><span class="line">        Task&lt;ActionResult&lt;ICollection&lt;Value&gt;&gt;&gt; GetValues ();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>Value and Application.Value are duplicate, change namespace to <code>namespace Application.ValueService</code>.</p>
@@ -161,6 +163,10 @@
       <ul>
         
           <li>
+            <a href="/2020/08/18/VS-Code-Tips/">VS Code Tips</a>
+          </li>
+        
+          <li>
             <a href="/2020/08/12/Creating-New-Blog-3/">Creating New Blog 3</a>
           </li>
         
@@ -174,10 +180,6 @@
         
           <li>
             <a href="/2020/08/09/Creating-New-Blog-1/">Creating New Blog 1</a>
-          </li>
-        
-          <li>
-            <a href="/2020/08/08/Markdown-Cheatsheet/">Markdown Cheatsheet</a>
           </li>
         
       </ul>
