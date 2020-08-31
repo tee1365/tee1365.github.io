@@ -7,15 +7,15 @@
   
   <title>Creating New Blog 3 | Justin&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Configuring Backend Project 2">
+  <meta name="description" content="1. Creating basecontroller123456namespace JustinBlog.Controllers &amp;#123;  [Route (&quot;api&#x2F;[controller]&quot;)]  [ApiController]  [Produces (&quot;application&#x2F;json&quot;)]  public class BaseController : ControllerBase &amp;#">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Creating New Blog 3">
 <meta property="og:url" content="https://tee1365.github.io/2020/08/12/Creating-New-Blog-3/index.html">
 <meta property="og:site_name" content="Justin&#39;s Blog">
-<meta property="og:description" content="Configuring Backend Project 2">
+<meta property="og:description" content="1. Creating basecontroller123456namespace JustinBlog.Controllers &amp;#123;  [Route (&quot;api&#x2F;[controller]&quot;)]  [ApiController]  [Produces (&quot;application&#x2F;json&quot;)]  public class BaseController : ControllerBase &amp;#">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-08-11T12:22:23.000Z">
-<meta property="article:modified_time" content="2020-08-11T12:23:28.581Z">
+<meta property="article:modified_time" content="2020-08-31T13:43:00.857Z">
 <meta property="article:author" content="Justin Song">
 <meta name="twitter:card" content="summary">
   
@@ -88,9 +88,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Configuring-Backend-Project-2"><a href="#Configuring-Backend-Project-2" class="headerlink" title="Configuring Backend Project 2"></a>Configuring Backend Project 2</h2><a id="more"></a>
-
-<h3 id="1-Creating-basecontroller"><a href="#1-Creating-basecontroller" class="headerlink" title="1. Creating basecontroller"></a>1. Creating basecontroller</h3><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">JustinBlog.Controllers</span> &#123;</span><br><span class="line">  [<span class="meta">Route (<span class="meta-string">"api/[controller]"</span>)</span>]</span><br><span class="line">  [<span class="meta">ApiController</span>]</span><br><span class="line">  [<span class="meta">Produces (<span class="meta-string">"application/json"</span>)</span>]</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">BaseController</span> : <span class="title">ControllerBase</span> &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h3 id="1-Creating-basecontroller"><a href="#1-Creating-basecontroller" class="headerlink" title="1. Creating basecontroller"></a>1. Creating basecontroller</h3><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">JustinBlog.Controllers</span> &#123;</span><br><span class="line">  [<span class="meta">Route (<span class="meta-string">"api/[controller]"</span>)</span>]</span><br><span class="line">  [<span class="meta">ApiController</span>]</span><br><span class="line">  [<span class="meta">Produces (<span class="meta-string">"application/json"</span>)</span>]</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">BaseController</span> : <span class="title">ControllerBase</span> &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="2-Add-error-handling"><a href="#2-Add-error-handling" class="headerlink" title="2. Add error handling"></a>2. Add error handling</h3><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Errors/RestException.cs</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">RestException</span> : <span class="title">Exception</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> HttpStatusCode Code &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">object</span> Errors &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RestException</span> (<span class="params">HttpStatusCode code, <span class="keyword">object</span> errors = <span class="literal">null</span></span>)</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.Errors = errors;</span><br><span class="line">        <span class="keyword">this</span>.Code = code;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 

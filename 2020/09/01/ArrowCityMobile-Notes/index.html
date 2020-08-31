@@ -7,15 +7,15 @@
   
   <title>ArrowCityMobile Notes | Justin&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="redux toolkit how to modify state using immer serializableCheck has conflict with redux persist, avoid conflict by using ignoredActions  1234567891011121314151617import &amp;#123;  persistStore,  persistR">
+  <meta name="description" content="redux toolkit modify state using immer serializableCheck has conflict with redux persist, avoid conflict by using ignoredActions  1234567891011121314151617import &amp;#123;  persistStore,  persistReducer,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ArrowCityMobile Notes">
 <meta property="og:url" content="https://tee1365.github.io/2020/09/01/ArrowCityMobile-Notes/index.html">
 <meta property="og:site_name" content="Justin&#39;s Blog">
-<meta property="og:description" content="redux toolkit how to modify state using immer serializableCheck has conflict with redux persist, avoid conflict by using ignoredActions  1234567891011121314151617import &amp;#123;  persistStore,  persistR">
+<meta property="og:description" content="redux toolkit modify state using immer serializableCheck has conflict with redux persist, avoid conflict by using ignoredActions  1234567891011121314151617import &amp;#123;  persistStore,  persistReducer,">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-08-31T13:31:57.000Z">
-<meta property="article:modified_time" content="2020-08-31T13:31:57.281Z">
+<meta property="article:modified_time" content="2020-08-31T13:42:32.295Z">
 <meta property="article:author" content="Justin Song">
 <meta name="twitter:card" content="summary">
   
@@ -89,7 +89,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="redux-toolkit"><a href="#redux-toolkit" class="headerlink" title="redux toolkit"></a>redux toolkit</h2><ol>
-<li><a href="https://immerjs.github.io/immer/docs/return" target="_blank" rel="noopener">how to modify state using immer</a></li>
+<li><a href="https://immerjs.github.io/immer/docs/return" target="_blank" rel="noopener">modify state using immer</a></li>
 <li>serializableCheck has conflict with redux persist, avoid conflict by using ignoredActions</li>
 </ol>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  persistStore,</span><br><span class="line">  persistReducer,</span><br><span class="line">  FLUSH,</span><br><span class="line">  REHYDRATE,</span><br><span class="line">  PAUSE,</span><br><span class="line">  PERSIST,</span><br><span class="line">  PURGE,</span><br><span class="line">  REGISTER,</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">"redux-persist"</span>;</span><br><span class="line"></span><br><span class="line">  middleware: <span class="function">(<span class="params">getDefaultMiddleware</span>) =&gt;</span></span><br><span class="line">    getDefaultMiddleware(&#123;</span><br><span class="line">      serializableCheck: &#123;</span><br><span class="line">        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;),</span><br></pre></td></tr></table></figure>

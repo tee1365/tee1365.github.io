@@ -7,15 +7,15 @@
   
   <title>project errors | Justin&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="updating…">
+  <meta name="description" content="eslint1. error  Don’t use {} as a type. {} actually means “any non-nullish value”  use Record&lt;string, unknown&gt; instead of {}   1234567&#x2F;&#x2F;incorrectpost: (url: string, body: &amp;#123;&amp;#125;) &#x3D;&gt;axio">
 <meta property="og:type" content="article">
 <meta property="og:title" content="project errors">
 <meta property="og:url" content="https://tee1365.github.io/2020/08/10/Project%20Errors/index.html">
 <meta property="og:site_name" content="Justin&#39;s Blog">
-<meta property="og:description" content="updating…">
+<meta property="og:description" content="eslint1. error  Don’t use {} as a type. {} actually means “any non-nullish value”  use Record&lt;string, unknown&gt; instead of {}   1234567&#x2F;&#x2F;incorrectpost: (url: string, body: &amp;#123;&amp;#125;) &#x3D;&gt;axio">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-08-10T08:23:09.000Z">
-<meta property="article:modified_time" content="2020-08-17T08:23:54.003Z">
+<meta property="article:modified_time" content="2020-08-31T13:43:14.849Z">
 <meta property="article:author" content="Justin Song">
 <meta name="twitter:card" content="summary">
   
@@ -88,10 +88,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>updating…</p>
-<a id="more"></a>
-
-<h2 id="eslint"><a href="#eslint" class="headerlink" title="eslint"></a>eslint</h2><h3 id="1-error-Don’t-use-as-a-type-actually-means-“any-non-nullish-value”"><a href="#1-error-Don’t-use-as-a-type-actually-means-“any-non-nullish-value”" class="headerlink" title="1. error  Don’t use {} as a type. {} actually means “any non-nullish value”"></a>1. error  Don’t use <code>{}</code> as a type. <code>{}</code> actually means “any non-nullish value”</h3><p>  use <code>Record&lt;string, unknown&gt;</code> instead of {}</p>
+        <h2 id="eslint"><a href="#eslint" class="headerlink" title="eslint"></a>eslint</h2><h3 id="1-error-Don’t-use-as-a-type-actually-means-“any-non-nullish-value”"><a href="#1-error-Don’t-use-as-a-type-actually-means-“any-non-nullish-value”" class="headerlink" title="1. error  Don’t use {} as a type. {} actually means “any non-nullish value”"></a>1. error  Don’t use <code>{}</code> as a type. <code>{}</code> actually means “any non-nullish value”</h3><p>  use <code>Record&lt;string, unknown&gt;</code> instead of {}</p>
   <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//incorrect</span></span><br><span class="line">post: <span class="function">(<span class="params">url: string, body: &#123;&#125;</span>) =&gt;</span></span><br><span class="line">axios.post(url, body).then(responseBody)</span><br><span class="line"></span><br><span class="line"><span class="comment">//correct</span></span><br><span class="line">post: <span class="function">(<span class="params">url: string, body: Record&lt;string, unknown&gt;</span>) =&gt;</span></span><br><span class="line">axios.post(url, body).then(responseBody)</span><br></pre></td></tr></table></figure>
 
 <h3 id="2-Do-not-access-Object-prototype-method-‘hasOwnProperty’-from-target-object"><a href="#2-Do-not-access-Object-prototype-method-‘hasOwnProperty’-from-target-object" class="headerlink" title="2. Do not access Object.prototype method ‘hasOwnProperty’ from target object"></a>2. Do not access Object.prototype method ‘hasOwnProperty’ from target object</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// incorrect</span></span><br><span class="line">data.errors.hasOwnProperty(<span class="string">"id"</span>)</span><br><span class="line"><span class="comment">// correct</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.hasOwnProperty.call(data.errors,<span class="string">"id"</span>)</span><br></pre></td></tr></table></figure>
