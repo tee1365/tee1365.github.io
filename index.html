@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Justin&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Justin&#39;s Blog">
+<meta property="og:url" content="https://tee1365.github.io/index.html">
+<meta property="og:site_name" content="Justin&#39;s Blog">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Justin Song">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Justin&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Justin&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://tee1365.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-ArrowCityMobile-Note" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/07/ArrowCityMobile-Note/" class="article-date">
+  <time datetime="2020-09-07T06:15:51.000Z" itemprop="datePublished">09-07-2020</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/07/ArrowCityMobile-Note/">ArrowCityMobile-Note</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="expo"><a href="#expo" class="headerlink" title="expo"></a>expo</h2><ol>
+<li>键盘弹出时影响布局 底部的button被顶到上面<br>在app.json中设置softwareKeyboardLayoutMode</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"android": &#123;</span><br><span class="line">  "softwareKeyboardLayoutMode": "pan"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="typecript"><a href="#typecript" class="headerlink" title="typecript"></a>typecript</h2><ol>
+<li>use typeguard helper to solve partial</li>
+</ol>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> typeGuard = &lt;T, K <span class="keyword">extends</span> keyof T&gt;(</span><br><span class="line">  obj: T,</span><br><span class="line">  ...props: K[]</span><br><span class="line">): obj is T &amp; Required&lt;Pick&lt;T, K&gt;&gt; =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> props.every(<span class="function">(<span class="params">k</span>) =&gt;</span> <span class="keyword">typeof</span> obj[k] !== <span class="string">"undefined"</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// its hard to use value inside newAccessToken since all property are string|undefined</span></span><br><span class="line"><span class="keyword">const</span> newAccessToken:Partial&lt;IToken&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">// use typeguard</span></span><br><span class="line"><span class="keyword">if</span>(typeGuard(newAccessToken, <span class="string">"accessToken"</span>, <span class="string">"accessTokenExpiryDate"</span>)&#123;</span><br><span class="line">  <span class="keyword">const</span> newToken: ILoginToken = &#123;</span><br><span class="line">     refreshToken,</span><br><span class="line">     refreshTokenExpiryDate,</span><br><span class="line">     ...newAccessToken,</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="components"><a href="#components" class="headerlink" title="components"></a>components</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">interface OverlayImageStyle extends ViewStyle &#123;</span><br><span class="line">  overlayColor?: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export interface ImageOverlayProps extends ImageBackgroundProps &#123;</span><br><span class="line">  style?: StyleProp&lt;OverlayImageStyle&gt;;</span><br><span class="line">  children: React.ReactNode;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const DEFAULT_OVERLAY_COLOR &#x3D; &quot;rgba(0, 0, 0, 0.45)&quot;;</span><br><span class="line"></span><br><span class="line">export const ImageOverlay &#x3D; (</span><br><span class="line">  props: ImageOverlayProps</span><br><span class="line">): React.ReactElement&lt;ImageBackgroundProps&gt; &#x3D;&gt; &#123;</span><br><span class="line">  const &#123; style, children, ...imageBackgroundProps &#125; &#x3D; props;</span><br><span class="line">  const &#123; overlayColor, ...imageBackgroundStyle &#125; &#x3D; StyleSheet.flatten(style);</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;ImageBackground &#123;...imageBackgroundProps&#125; style&#x3D;&#123;imageBackgroundStyle&#125;&gt;</span><br><span class="line">      &lt;View</span><br><span class="line">        style&#x3D;&#123;[</span><br><span class="line">          StyleSheet.absoluteFill,</span><br><span class="line">          &#123; backgroundColor: overlayColor || DEFAULT_OVERLAY_COLOR &#125;,</span><br><span class="line">        ]&#125;</span><br><span class="line">      &#x2F;&gt;</span><br><span class="line">      &#123;children&#125;</span><br><span class="line">    &lt;&#x2F;ImageBackground&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="styled-components"><a href="#styled-components" class="headerlink" title="styled-components"></a>styled-components</h2><ol>
+<li>have to add units</li>
+<li>use <code>flex:1 0</code> instead of <code>flex:1</code></li>
+</ol>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> AuthInnerContainer = styled.View&lt;ViewProps&gt;<span class="string">`</span></span><br><span class="line"><span class="string">  flex: 1 0</span></span><br><span class="line"><span class="string">  width: <span class="subst">$&#123;LayoutConst.width * <span class="number">0.8</span>&#125;</span>px</span></span><br><span class="line"><span class="string">  height: <span class="subst">$&#123;LayoutConst.height&#125;</span>px</span></span><br><span class="line"><span class="string">`</span>;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://tee1365.github.io/2020/09/07/ArrowCityMobile-Note/" data-id="ckf94yjwi0002vc951z5c3ss5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ArrowCityMobile-Setup" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/01/ArrowCityMobile-Setup/" class="article-date">
+  <time datetime="2020-08-31T13:31:57.000Z" itemprop="datePublished">09-01-2020</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/01/ArrowCityMobile-Setup/">ArrowCityMobile Setup</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="redux-toolkit"><a href="#redux-toolkit" class="headerlink" title="redux toolkit"></a>redux toolkit</h2><ol>
+<li><a href="https://immerjs.github.io/immer/docs/return" target="_blank" rel="noopener">modify state using immer</a></li>
+<li>serializableCheck has conflict with redux persist, avoid conflict by using ignoredActions</li>
+</ol>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  persistStore,</span><br><span class="line">  persistReducer,</span><br><span class="line">  FLUSH,</span><br><span class="line">  REHYDRATE,</span><br><span class="line">  PAUSE,</span><br><span class="line">  PERSIST,</span><br><span class="line">  PURGE,</span><br><span class="line">  REGISTER,</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">"redux-persist"</span>;</span><br><span class="line"></span><br><span class="line">  middleware: <span class="function">(<span class="params">getDefaultMiddleware</span>) =&gt;</span></span><br><span class="line">    getDefaultMiddleware(&#123;</span><br><span class="line">      serializableCheck: &#123;</span><br><span class="line">        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;),</span><br></pre></td></tr></table></figure>
+
+<h2 id="react-navigation"><a href="#react-navigation" class="headerlink" title="react navigation"></a>react navigation</h2><ol>
+<li>navigate in redux actions<br>create a ref and assign to NavigationContainer</li>
+</ol>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//navigationHelpers.ts</span></span><br><span class="line"><span class="keyword">const</span> navigationRef = React.createRef&lt;NavigationContainerRef&gt;();</span><br><span class="line"><span class="comment">//Navigation.tsx</span></span><br><span class="line">&lt;NavigationContainer</span><br><span class="line"> linking=&#123;LinkingConfiguration&#125;</span><br><span class="line"> ref=&#123;navigationHelpers.navigationRef&#125;</span><br><span class="line">&gt;</span><br><span class="line"> &lt;RootNavigator /&gt;</span><br><span class="line">&lt;<span class="regexp">/NavigationContainer&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>then use ref to create a custom navigate method</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//navigationHelpers.ts</span></span><br><span class="line"><span class="keyword">const</span> navigate = &lt;RouteName <span class="keyword">extends</span> keyof ParamListBase&gt;(</span><br><span class="line">  name: <span class="built_in">string</span>,</span><br><span class="line">  params?: ParamListBase[RouteName]</span><br><span class="line">): <span class="function"><span class="params">void</span> =&gt;</span> &#123;</span><br><span class="line">  navigationRef.current?.navigate(name, params);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="react-native-debugger"><a href="#react-native-debugger" class="headerlink" title="react native debugger"></a>react native debugger</h2><ol>
+<li>network inspection<br>use <code>http://10.0.2.2:5000/api/mob</code> when network inspection disabled<br>use <code>http://localhost:5000/api/mob</code> when network inspection enabled</li>
+</ol>
+<h2 id="Form-using-Formik-and-yup"><a href="#Form-using-Formik-and-yup" class="headerlink" title="Form using Formik and yup"></a>Form using Formik and yup</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">&lt;Formik</span><br><span class="line"> initialValues=&#123;&#123; email: <span class="string">""</span>, password: <span class="string">""</span>, isRememberMe: <span class="literal">false</span> &#125;&#125;</span><br><span class="line"> onSubmit=&#123;<span class="function">(<span class="params">values: ILogin</span>) =&gt;</span> &#123;</span><br><span class="line">   dispatch(loginAsync(values));</span><br><span class="line"> &#125;&#125;</span><br><span class="line"> validationSchema=&#123;yup.object().shape(&#123;</span><br><span class="line">   email: yup.string().email().required(),</span><br><span class="line">   password: yup.string().required(),</span><br><span class="line"> &#125;)&#125;</span><br><span class="line">&gt;</span><br><span class="line"> &#123;(&#123;</span><br><span class="line">   values,</span><br><span class="line">   handleChange,</span><br><span class="line">   handleSubmit,</span><br><span class="line">   setFieldValue,</span><br><span class="line">   setFieldTouched,</span><br><span class="line">   touched,</span><br><span class="line">   errors,</span><br><span class="line">   isValid,</span><br><span class="line"> &#125;) =&gt; (</span><br><span class="line">   &lt;&gt;</span><br><span class="line">     &lt;View style=&#123;styles.inputContainer&#125;&gt;</span><br><span class="line">       &lt;TextInput</span><br><span class="line">         style=&#123;styles.input&#125;</span><br><span class="line">         mode=<span class="string">"outlined"</span></span><br><span class="line">         label=<span class="string">"Email"</span></span><br><span class="line">         value=&#123;values.email&#125;</span><br><span class="line">         onChangeText=&#123;handleChange(<span class="string">"email"</span>)&#125;</span><br><span class="line">         onBlur=&#123;<span class="function"><span class="params">()</span> =&gt;</span> setFieldTouched(<span class="string">"email"</span>)&#125;</span><br><span class="line">       /&gt;</span><br><span class="line">       &lt;HelperText</span><br><span class="line">         <span class="keyword">type</span>=<span class="string">"error"</span></span><br><span class="line">         visible=&#123;touched.email &amp;&amp; !!errors.email&#125;</span><br><span class="line">       &gt;</span><br><span class="line">         &#123;errors.email&#125;</span><br><span class="line">       &lt;<span class="regexp">/HelperText&gt;</span></span><br><span class="line"><span class="regexp">       &lt;TextInput</span></span><br><span class="line"><span class="regexp">         style=&#123;styles.input&#125;</span></span><br><span class="line"><span class="regexp">         mode="outlined"</span></span><br><span class="line"><span class="regexp">         label="Password"</span></span><br><span class="line"><span class="regexp">         value=&#123;values.password&#125;</span></span><br><span class="line"><span class="regexp">         onChangeText=&#123;handleChange("password")&#125;</span></span><br><span class="line"><span class="regexp">         onBlur=&#123;() =&gt; setFieldTouched("password")&#125;</span></span><br><span class="line"><span class="regexp">         secureTextEntry</span></span><br><span class="line"><span class="regexp">       /</span>&gt;</span><br><span class="line">       &lt;HelperText</span><br><span class="line">         <span class="keyword">type</span>=<span class="string">"error"</span></span><br><span class="line">         visible=&#123;!!(touched.password &amp;&amp; !!errors.password)&#125;</span><br><span class="line">       &gt;</span><br><span class="line">         &#123;errors.password&#125;</span><br><span class="line">       &lt;<span class="regexp">/HelperText&gt;</span></span><br><span class="line"><span class="regexp">       &lt;View style=&#123;styles.switchContainer&#125;&gt;</span></span><br><span class="line"><span class="regexp">         &lt;Text&gt;Remember Me&lt;/</span>Text&gt;</span><br><span class="line">         &lt;Switch</span><br><span class="line">           value=&#123;values.isRememberMe&#125;</span><br><span class="line">           onValueChange=&#123;<span class="function">(<span class="params">value</span>) =&gt;</span></span><br><span class="line">             setFieldValue(<span class="string">"isRememberMe"</span>, value)</span><br><span class="line">           &#125;</span><br><span class="line">         /&gt;</span><br><span class="line">       &lt;<span class="regexp">/View&gt;</span></span><br><span class="line"><span class="regexp">     &lt;/</span>View&gt;</span><br><span class="line">     &lt;Button</span><br><span class="line">       icon=<span class="string">"login"</span></span><br><span class="line">       mode=<span class="string">"contained"</span></span><br><span class="line">       color=&#123;colors.accent&#125;</span><br><span class="line">       onPress=&#123;handleSubmit&#125;</span><br><span class="line">       disabled=&#123;!isValid&#125;</span><br><span class="line">     &gt;</span><br><span class="line">       Submit</span><br><span class="line">     &lt;<span class="regexp">/Button&gt;</span></span><br><span class="line"><span class="regexp">   &lt;/</span>&gt;</span><br><span class="line"> )&#125;</span><br><span class="line">&lt;<span class="regexp">/Formik&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="axios"><a href="#axios" class="headerlink" title="axios"></a>axios</h2><ol>
+<li>set request interceptor in app.tsx</li>
+</ol>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//App.tsx</span></span><br><span class="line"><span class="keyword">const</span> &#123; token &#125; = store.getState().user;</span><br><span class="line">useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line"> <span class="keyword">if</span> (token.accessToken) &#123;</span><br><span class="line">   setClientToken(token.accessToken);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;, [token.accessToken]);</span><br><span class="line"><span class="comment">//agent.ts</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> setClientToken = (token: <span class="built_in">string</span>): <span class="function"><span class="params">void</span> =&gt;</span> &#123;</span><br><span class="line">  axios.interceptors.request.use(<span class="function">(<span class="params">config: AxiosRequestConfig</span>) =&gt;</span> &#123;</span><br><span class="line">    config.headers.Authorization = <span class="string">`Bearer <span class="subst">$&#123;token&#125;</span>`</span>;</span><br><span class="line">    <span class="keyword">return</span> config;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>setting request interceptor in app.tsx can prevent dependency cycle.</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//without setting request interceptor in app.tsx</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//agent</span></span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> rootstore</span><br><span class="line"></span><br><span class="line"><span class="comment">//rootstore</span></span><br><span class="line"><span class="keyword">import</span> userReducer <span class="keyword">from</span> userReducer</span><br><span class="line"></span><br><span class="line"><span class="comment">//userReducer</span></span><br><span class="line"><span class="keyword">import</span> &#123;AuthApi&#125; <span class="keyword">from</span> agent</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://tee1365.github.io/2020/09/01/ArrowCityMobile-Setup/" data-id="ckf94yjwc0000vc9595snb0dr" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-VS-Code-Tips" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/18/VS-Code-Tips/" class="article-date">
+  <time datetime="2020-08-18T04:13:56.000Z" itemprop="datePublished">08-18-2020</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/18/VS-Code-Tips/">VS Code Tips</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>Bookmark with extension  ctrl+alt+k</li>
+<li>Outline ctrl+p @</li>
+<li>auto completion manually ctrl+space</li>
+<li>Rename in all files(instead of find and replace) f2</li>
+<li>Paste json as code extension(generate interfaces from swagger) copy json -&gt; create file -&gt; ctrl+shift+p -&gt; Paste json as code</li>
+<li>zen mode ctrl+k z</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://tee1365.github.io/2020/08/18/VS-Code-Tips/" data-id="ckf94yjwn0007vc95al2o6ce8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Creating-New-Blog-3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/12/Creating-New-Blog-3/" class="article-date">
+  <time datetime="2020-08-11T12:22:23.000Z" itemprop="datePublished">08-12-2020</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/12/Creating-New-Blog-3/">Creating New Blog 3</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-Creating-basecontroller"><a href="#1-Creating-basecontroller" class="headerlink" title="1. Creating basecontroller"></a>1. Creating basecontroller</h3><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">JustinBlog.Controllers</span> &#123;</span><br><span class="line">  [<span class="meta">Route (<span class="meta-string">"api/[controller]"</span>)</span>]</span><br><span class="line">  [<span class="meta">ApiController</span>]</span><br><span class="line">  [<span class="meta">Produces (<span class="meta-string">"application/json"</span>)</span>]</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">BaseController</span> : <span class="title">ControllerBase</span> &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-Add-error-handling"><a href="#2-Add-error-handling" class="headerlink" title="2. Add error handling"></a>2. Add error handling</h3><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Errors/RestException.cs</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">RestException</span> : <span class="title">Exception</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> HttpStatusCode Code &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">object</span> Errors &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RestException</span> (<span class="params">HttpStatusCode code, <span class="keyword">object</span> errors = <span class="literal">null</span></span>)</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.Errors = errors;</span><br><span class="line">        <span class="keyword">this</span>.Code = code;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ErrorHandlingMiddleware</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">readonly</span> RequestDelegate _next;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">readonly</span> ILogger&lt;ErrorHandlingMiddleware&gt; _logger;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">ErrorHandlingMiddleware</span> (<span class="params">RequestDelegate next, ILogger&lt;ErrorHandlingMiddleware&gt; logger</span>)</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>._logger = logger;</span><br><span class="line">      <span class="keyword">this</span>._next = next;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task <span class="title">Invoke</span> (<span class="params">HttpContext context</span>)</span> &#123;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">          <span class="keyword">await</span> _next (context);</span><br><span class="line">      &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">          <span class="keyword">await</span> HandleExceptionAsync (context, e, _logger);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">async</span> Task <span class="title">HandleExceptionAsync</span> (<span class="params">HttpContext context, Exception e, ILogger&lt;ErrorHandlingMiddleware&gt; logger</span>)</span> &#123;</span><br><span class="line">      <span class="keyword">object</span> errors = <span class="literal">null</span>;</span><br><span class="line">      <span class="keyword">switch</span> (e) &#123;</span><br><span class="line">          <span class="keyword">case</span> RestException re:</span><br><span class="line">              logger.LogError (e, <span class="string">"Rest Error"</span>);</span><br><span class="line">              errors = re.Errors;</span><br><span class="line">              context.Response.StatusCode = (<span class="keyword">int</span>) re.Code;</span><br><span class="line">              <span class="keyword">break</span>;</span><br><span class="line">          <span class="keyword">case</span> Exception exception:</span><br><span class="line">              logger.LogError (e, <span class="string">"Server Error"</span>);</span><br><span class="line">              errors = <span class="keyword">string</span>.IsNullOrWhiteSpace (e.Message) ? <span class="string">"Error"</span> : e.Message;</span><br><span class="line">              context.Response.StatusCode = (<span class="keyword">int</span>) HttpStatusCode.InternalServerError;</span><br><span class="line">              <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      context.Response.ContentType = <span class="string">"application/json"</span>;</span><br><span class="line">      <span class="keyword">if</span> (errors != <span class="literal">null</span>) &#123;</span><br><span class="line">          <span class="keyword">var</span> result = JsonSerializer.Serialize (<span class="keyword">new</span> &#123;</span><br><span class="line">              errors</span><br><span class="line">          &#125;);</span><br><span class="line">          <span class="keyword">await</span> context.Response.WriteAsync (result);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-Add-swagger"><a href="#3-Add-swagger" class="headerlink" title="3. Add swagger"></a>3. Add swagger</h3>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dotnet add JustinBlog.csproj package Swashbuckle.AspNetCore -v 5.5.0</span><br></pre></td></tr></table></figure>
+
+  <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ConfigureServices</span></span><br><span class="line">services.AddSwaggerGen();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Configure</span></span><br><span class="line">app.UseSwagger();</span><br><span class="line">app.UseSwaggerUI(c =&gt;&#123;</span><br><span class="line">    c.SwaggerEndpoint(<span class="string">"/swagger/v1/swagger.json"</span>, <span class="string">"My API V1"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>  enter <code>http://localhost:5000/swagger</code> to open swagger ui</p>
+<h4 id="Enabling-XML-comments"><a href="#Enabling-XML-comments" class="headerlink" title="Enabling XML comments"></a>Enabling XML comments</h4>  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// add config in .csproj file</span><br><span class="line"><span class="tag">&lt;<span class="name">PropertyGroup</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">GenerateDocumentationFile</span>&gt;</span>true<span class="tag">&lt;/<span class="name">GenerateDocumentationFile</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">NoWarn</span>&gt;</span>$(NoWarn);1591<span class="tag">&lt;/<span class="name">NoWarn</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">PropertyGroup</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+  <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// update service config</span></span><br><span class="line">services.AddSwaggerGen (c =&gt; &#123;</span><br><span class="line">  <span class="keyword">var</span> xmlFile = <span class="string">$"<span class="subst">&#123;Assembly.GetExecutingAssembly().GetName().Name&#125;</span>.xml"</span>;</span><br><span class="line">  <span class="keyword">var</span> xmlPath = Path.Combine (AppContext.BaseDirectory, xmlFile);</span><br><span class="line">  c.IncludeXmlComments (xmlPath);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>  use summary label to create summary of api, use <code>[Produces (&quot;application/json&quot;)]</code> to generate content type.</p>
+  <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> Deletes a specific TodoItem.</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">[<span class="meta">Produces (<span class="meta-string">"application/json"</span>)</span>]</span><br><span class="line">[<span class="meta">HttpGet</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">async</span> Task&lt;ActionResult&lt;ICollection&lt;Value&gt;&gt;&gt; GetValues () &#123;</span><br><span class="line">    <span class="keyword">var</span> values = <span class="keyword">await</span> _context.Values.ToListAsync ();</span><br><span class="line">    <span class="keyword">return</span> Ok (values);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://tee1365.github.io/2020/08/12/Creating-New-Blog-3/" data-id="ckf94yjwm0006vc956wd5gcy4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Creating-New-Blog-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/10/Creating-New-Blog-2/" class="article-date">
+  <time datetime="2020-08-10T11:53:09.000Z" itemprop="datePublished">08-10-2020</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/10/Creating-New-Blog-2/">Creating New Blog 2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-Create-new-project-via-create-react-app"><a href="#1-Create-new-project-via-create-react-app" class="headerlink" title="1. Create new project via create-react-app"></a>1. Create new project via create-react-app</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx create-react-app my-app --template typescript</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-eslint-config"><a href="#2-eslint-config" class="headerlink" title="2. eslint config"></a>2. eslint config</h3><p>eslint, airbnb rules, typescrpt support and prettier support.</p>
+<p>I installed <a href="mailto:eslint@6.6.0">eslint@6.6.0</a> instead of eslint@latest since there is some compatible issues.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"env"</span>: &#123;</span><br><span class="line">    <span class="attr">"browser"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">"es6"</span>: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"extends"</span>: [</span><br><span class="line">    <span class="string">"airbnb"</span>,</span><br><span class="line">    <span class="string">"airbnb/hooks"</span>,</span><br><span class="line">    <span class="string">"plugin:react/recommended"</span>,</span><br><span class="line">    <span class="string">"plugin:import/typescript"</span>,</span><br><span class="line">    <span class="string">"plugin:@typescript-eslint/recommended"</span>,</span><br><span class="line">    <span class="string">"prettier"</span>,</span><br><span class="line">    <span class="string">"prettier/react"</span>,</span><br><span class="line">    <span class="string">"prettier/@typescript-eslint"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"globals"</span>: &#123;</span><br><span class="line">    <span class="attr">"Atomics"</span>: <span class="string">"readonly"</span>,</span><br><span class="line">    <span class="attr">"SharedArrayBuffer"</span>: <span class="string">"readonly"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"parser"</span>: <span class="string">"@typescript-eslint/parser"</span>,</span><br><span class="line">  <span class="attr">"parserOptions"</span>: &#123;</span><br><span class="line">    <span class="attr">"ecmaFeatures"</span>: &#123;</span><br><span class="line">      <span class="attr">"jsx"</span>: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"ecmaVersion"</span>: <span class="number">2018</span>,</span><br><span class="line">    <span class="attr">"sourceType"</span>: <span class="string">"module"</span>,</span><br><span class="line">    <span class="attr">"project"</span>: <span class="string">"./tsconfig.json"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"plugins"</span>: [<span class="string">"react"</span>, <span class="string">"@typescript-eslint"</span>, <span class="string">"prettier"</span>],</span><br><span class="line">  <span class="attr">"rules"</span>: &#123;</span><br><span class="line">    <span class="attr">"prettier/prettier"</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="attr">"react/jsx-filename-extension"</span>: [<span class="number">1</span>, &#123; <span class="attr">"extensions"</span>: [<span class="string">".jsx"</span>, <span class="string">".tsx"</span>] &#125;],</span><br><span class="line">    <span class="attr">"react-hooks/exhaustive-deps"</span>: <span class="string">"warn"</span>,</span><br><span class="line">    <span class="attr">"@typescript-eslint/indent"</span>: <span class="string">"off"</span>,</span><br><span class="line">    <span class="attr">"quotes"</span>: [<span class="number">2</span>, <span class="string">"double"</span>],</span><br><span class="line">    <span class="attr">"react/jsx-props-no-spreading"</span>: <span class="string">"off"</span>,</span><br><span class="line">    <span class="attr">"react/prop-types"</span>: <span class="string">"off"</span>,</span><br><span class="line">    <span class="attr">"no-param-reassign"</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">"react/display-name"</span>: <span class="string">"off"</span>,</span><br><span class="line">    <span class="attr">"global-require"</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">"import/extensions"</span>: [</span><br><span class="line">      <span class="string">"error"</span>,</span><br><span class="line">      <span class="string">"ignorePackages"</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"js"</span>: <span class="string">"never"</span>,</span><br><span class="line">        <span class="attr">"jsx"</span>: <span class="string">"never"</span>,</span><br><span class="line">        <span class="attr">"ts"</span>: <span class="string">"never"</span>,</span><br><span class="line">        <span class="attr">"tsx"</span>: <span class="string">"never"</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-React-Router"><a href="#3-React-Router" class="headerlink" title="3. React Router"></a>3. React Router</h3><p>add router in index with history, add route in app.</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// api/createBrowserHistory</span></span><br><span class="line"><span class="keyword">import</span> &#123; createBrowserHistory &#125; <span class="keyword">from</span> <span class="string">"history"</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> createBrowserHistory();</span><br><span class="line"></span><br><span class="line"><span class="comment">// index</span></span><br><span class="line">&lt;Router history=&#123;history&#125;&gt;</span><br><span class="line">  &lt;App /&gt;</span><br><span class="line">&lt;<span class="regexp">/Router&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ app</span></span><br><span class="line"><span class="regexp">&lt;&gt;</span></span><br><span class="line"><span class="regexp">  &lt;Route path="/</span><span class="string">" component=&#123;Homepage&#125; exact /&gt;</span></span><br><span class="line"><span class="string">  &lt;Route path="</span>/value<span class="string">" component=&#123;Value&#125; /&gt;</span></span><br><span class="line"><span class="string">  &lt;Route path="</span>/test<span class="string">" component=&#123;Test&#125; /&gt;</span></span><br><span class="line"><span class="string">&lt;/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-Redux"><a href="#4-Redux" class="headerlink" title="4. Redux"></a>4. Redux</h3><p>use provider to wrap router in index.</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index</span></span><br><span class="line">&lt;Provider store=&#123;store&#125;&gt;</span><br><span class="line">  &lt;PersistGate loading=&#123;<span class="literal">null</span>&#125; persistor=&#123;persistor&#125;&gt;</span><br><span class="line">    &lt;Router history=&#123;history&#125;&gt;</span><br><span class="line">      &lt;App /&gt;</span><br><span class="line">      &lt;ToastContainer position=<span class="string">"bottom-right"</span> /&gt;</span><br><span class="line">    &lt;<span class="regexp">/Router&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>PersistGate&gt;</span><br><span class="line">&lt;<span class="regexp">/Provider&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ rootstore</span></span><br><span class="line"><span class="regexp">import &#123; configureStore, combineReducers, Action &#125; from "@reduxjs/</span>toolkit<span class="string">";</span></span><br><span class="line"><span class="string">import &#123; ThunkAction &#125; from "</span>redux-thunk<span class="string">";</span></span><br><span class="line"><span class="string">import &#123;</span></span><br><span class="line"><span class="string">  persistStore,</span></span><br><span class="line"><span class="string">  persistReducer,</span></span><br><span class="line"><span class="string">  FLUSH,</span></span><br><span class="line"><span class="string">  REHYDRATE,</span></span><br><span class="line"><span class="string">  PAUSE,</span></span><br><span class="line"><span class="string">  PERSIST,</span></span><br><span class="line"><span class="string">  PURGE,</span></span><br><span class="line"><span class="string">  REGISTER,</span></span><br><span class="line"><span class="string">&#125; from "</span>redux-persist<span class="string">";</span></span><br><span class="line"><span class="string">import AsyncStorage from "</span><span class="meta">@react</span>-native-community/<span class="keyword">async</span>-storage<span class="string">";</span></span><br><span class="line"><span class="string">import counterSlice from "</span>./slices/counterSlice<span class="string">";</span></span><br><span class="line"><span class="string">import userSlice from "</span>./slices/userSlice<span class="string">";</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">const persistConfig = &#123;</span></span><br><span class="line"><span class="string">  key: "</span>root<span class="string">",</span></span><br><span class="line"><span class="string">  storage: AsyncStorage,</span></span><br><span class="line"><span class="string">  whitelist: ["</span>user<span class="string">"],</span></span><br><span class="line"><span class="string">&#125;;</span></span><br><span class="line"><span class="string">const &#123; reducer: counter &#125; = counterSlice;</span></span><br><span class="line"><span class="string">const &#123; reducer: user &#125; = userSlice;</span></span><br><span class="line"><span class="string">const rootReducer = combineReducers(&#123; counter, user &#125;);</span></span><br><span class="line"><span class="string">const persistedReducer = persistReducer(persistConfig, rootReducer);</span></span><br><span class="line"><span class="string">export const store = configureStore(&#123;</span></span><br><span class="line"><span class="string">  reducer: persistedReducer,</span></span><br><span class="line"><span class="string">  middleware: (getDefaultMiddleware) =&gt;</span></span><br><span class="line"><span class="string">    getDefaultMiddleware(&#123;</span></span><br><span class="line"><span class="string">      serializableCheck: &#123;</span></span><br><span class="line"><span class="string">        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],</span></span><br><span class="line"><span class="string">      &#125;,</span></span><br><span class="line"><span class="string">    &#125;),</span></span><br><span class="line"><span class="string">&#125;);</span></span><br><span class="line"><span class="string">const persistor = persistStore(store);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">export type RootState = ReturnType&lt;typeof rootReducer&gt;;</span></span><br><span class="line"><span class="string">export type AppThunk = ThunkAction&lt;void, RootState, null, Action&lt;string&gt;&gt;;</span></span><br><span class="line"><span class="string">export type AppDispatch = typeof store.dispatch;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">export default persistor;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">// slice</span></span><br><span class="line"><span class="string">import &#123; createSlice &#125; from "</span><span class="meta">@reduxjs</span>/toolkit<span class="string">";</span></span><br><span class="line"><span class="string">import type &#123; RootState &#125; from "</span>../rootStore<span class="string">";</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">interface CounterState &#123;</span></span><br><span class="line"><span class="string">  value: number;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">const initialState: CounterState = &#123;</span></span><br><span class="line"><span class="string">  value: 0,</span></span><br><span class="line"><span class="string">&#125;;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">const counterSlice = createSlice(&#123;</span></span><br><span class="line"><span class="string">  name: "</span>counter<span class="string">",</span></span><br><span class="line"><span class="string">  initialState,</span></span><br><span class="line"><span class="string">  reducers: &#123;</span></span><br><span class="line"><span class="string">    increment(state) &#123;</span></span><br><span class="line"><span class="string">      state.value += 1;</span></span><br><span class="line"><span class="string">    &#125;,</span></span><br><span class="line"><span class="string">  &#125;,</span></span><br><span class="line"><span class="string">&#125;);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">export const selectCount = (state: RootState): number =&gt; state.counter.value;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">export default counterSlice;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-axios"><a href="#5-axios" class="headerlink" title="5. axios"></a>5. axios</h3><p>Add cors at backend first.</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ConfigureServices</span></span><br><span class="line">services.AddCors (opt =&gt; &#123;</span><br><span class="line">  opt.AddPolicy (<span class="string">"CorsPolicy"</span>, policy =&gt; &#123;</span><br><span class="line">    policy.AllowAnyHeader ().AllowAnyMethod ().WithOrigins (<span class="string">"http://localhost:3000"</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Configure</span></span><br><span class="line">app.UseCors (<span class="string">"CorsPolicy"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>Install axios, react-toastify and create agent.ts. Use interceptors to handle errors.</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// agent.ts</span></span><br><span class="line"><span class="keyword">import</span> axios, &#123; AxiosResponse &#125; <span class="keyword">from</span> <span class="string">"axios"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; toast &#125; <span class="keyword">from</span> <span class="string">"react-toastify"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; IValue &#125; <span class="keyword">from</span> <span class="string">"../models/valueModel"</span>;</span><br><span class="line"><span class="keyword">import</span> history <span class="keyword">from</span> <span class="string">"./routerHistory"</span>;</span><br><span class="line"></span><br><span class="line">axios.defaults.baseURL = <span class="string">"http://localhost:5000/api"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> responseBody = (</span><br><span class="line">  response: AxiosResponse</span><br><span class="line">): ReturnType&lt;<span class="keyword">typeof</span> response.data&gt; =&gt; response.data;</span><br><span class="line"></span><br><span class="line">axios.interceptors.response.use(<span class="literal">undefined</span>, <span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (error.message === <span class="string">"Network Error"</span> &amp;&amp; !error.response) &#123;</span><br><span class="line">    toast.error(<span class="string">"Connection error!"</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; status, data, config &#125; = error.response;</span><br><span class="line">    <span class="keyword">if</span> (status === <span class="number">404</span>) &#123;</span><br><span class="line">      history.push(<span class="string">"/notfound"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (</span><br><span class="line">      status === <span class="number">400</span> &amp;&amp;</span><br><span class="line">      config.method === <span class="string">"get"</span> &amp;&amp;</span><br><span class="line">      <span class="built_in">Object</span>.prototype.hasOwnProperty.call(data.errors, <span class="string">"id"</span>)</span><br><span class="line">    ) &#123;</span><br><span class="line">      history.push(<span class="string">"/notfound"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (status === <span class="number">500</span>) &#123;</span><br><span class="line">      toast.error(<span class="string">"Server error!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">throw</span> error.response;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> requests = &#123;</span><br><span class="line">  <span class="keyword">get</span>: <span class="function">(<span class="params">url: <span class="built_in">string</span>, params?: URLSearchParams</span>) =&gt;</span></span><br><span class="line">    axios.get(url, &#123; params &#125;).then(responseBody),</span><br><span class="line">  post: &lt;T&gt;<span class="function">(<span class="params">url: <span class="built_in">string</span>, body: T</span>) =&gt;</span> axios.post(url, body).then(responseBody),</span><br><span class="line">  put: &lt;T&gt;<span class="function">(<span class="params">url: <span class="built_in">string</span>, body: T</span>) =&gt;</span> axios.put(url, body).then(responseBody),</span><br><span class="line">  del: <span class="function">(<span class="params">url: <span class="built_in">string</span></span>) =&gt;</span> axios.delete(url).then(responseBody),</span><br><span class="line">  postForm: <span class="function">(<span class="params">url: <span class="built_in">string</span>, file: Blob</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> formData = <span class="keyword">new</span> FormData();</span><br><span class="line">    formData.append(<span class="string">"File"</span>, file);</span><br><span class="line">    <span class="keyword">return</span> axios</span><br><span class="line">      .post(url, formData, &#123;</span><br><span class="line">        headers: &#123; <span class="string">"Content-type"</span>: <span class="string">"multipart/form-data"</span> &#125;,</span><br><span class="line">      &#125;)</span><br><span class="line">      .then(responseBody);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Value = &#123;</span><br><span class="line">  getValues: (): <span class="built_in">Promise</span>&lt;IValue[]&gt; =&gt; requests.get(<span class="string">"/value"</span>),</span><br><span class="line">  getValue: (id: <span class="built_in">number</span>): <span class="built_in">Promise</span>&lt;IValue&gt; =&gt; requests.get(<span class="string">`/value/<span class="subst">$&#123;id&#125;</span>`</span>),</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Value;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-Semantic-UI"><a href="#6-Semantic-UI" class="headerlink" title="6. Semantic UI"></a>6. Semantic UI</h3><p>npm install semantic-ui-react semantic-ui-css</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'semantic-ui-css/semantic.min.css'</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://tee1365.github.io/2020/08/10/Creating-New-Blog-2/" data-id="ckf94yjwg0001vc950dsy950v" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Project Errors" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/10/Project%20Errors/" class="article-date">
+  <time datetime="2020-08-10T08:23:09.000Z" itemprop="datePublished">08-10-2020</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/10/Project%20Errors/">project errors</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="eslint"><a href="#eslint" class="headerlink" title="eslint"></a>eslint</h2><h3 id="1-error-Don’t-use-as-a-type-actually-means-“any-non-nullish-value”"><a href="#1-error-Don’t-use-as-a-type-actually-means-“any-non-nullish-value”" class="headerlink" title="1. error  Don’t use {} as a type. {} actually means “any non-nullish value”"></a>1. error  Don’t use <code>{}</code> as a type. <code>{}</code> actually means “any non-nullish value”</h3><p>  use <code>Record&lt;string, unknown&gt;</code> instead of {}</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//incorrect</span></span><br><span class="line">post: <span class="function">(<span class="params">url: string, body: &#123;&#125;</span>) =&gt;</span></span><br><span class="line">axios.post(url, body).then(responseBody)</span><br><span class="line"></span><br><span class="line"><span class="comment">//correct</span></span><br><span class="line">post: <span class="function">(<span class="params">url: string, body: Record&lt;string, unknown&gt;</span>) =&gt;</span></span><br><span class="line">axios.post(url, body).then(responseBody)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-Do-not-access-Object-prototype-method-‘hasOwnProperty’-from-target-object"><a href="#2-Do-not-access-Object-prototype-method-‘hasOwnProperty’-from-target-object" class="headerlink" title="2. Do not access Object.prototype method ‘hasOwnProperty’ from target object"></a>2. Do not access Object.prototype method ‘hasOwnProperty’ from target object</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// incorrect</span></span><br><span class="line">data.errors.hasOwnProperty(<span class="string">"id"</span>)</span><br><span class="line"><span class="comment">// correct</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.hasOwnProperty.call(data.errors,<span class="string">"id"</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="frontend"><a href="#frontend" class="headerlink" title="frontend"></a>frontend</h2><h3 id="Type-‘unknown’-is-not-assignable-to-type-‘ReactNode’"><a href="#Type-‘unknown’-is-not-assignable-to-type-‘ReactNode’" class="headerlink" title="Type ‘unknown’ is not assignable to type ‘ReactNode’"></a>Type ‘unknown’ is not assignable to type ‘ReactNode’</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// incorrect, need to specify Object.values' type</span></span><br><span class="line"><span class="built_in">Object</span>.values(error.data.errors)  </span><br><span class="line">  .flat()</span><br><span class="line">  .map(<span class="function">(<span class="params">el, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Message.Item</span> <span class="attr">key</span>=<span class="string">&#123;index&#125;</span>&gt;</span>&#123;el&#125;<span class="tag">&lt;/<span class="name">Message.Item</span>&gt;</span></span>;</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//correct</span></span><br><span class="line"><span class="built_in">Object</span>.values&lt;string&gt;(error.data.errors)  </span><br><span class="line">  .flat()</span><br><span class="line">  .map(<span class="function">(<span class="params">el, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Message.Item</span> <span class="attr">key</span>=<span class="string">&#123;index&#125;</span>&gt;</span>&#123;el&#125;<span class="tag">&lt;/<span class="name">Message.Item</span>&gt;</span></span>;</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Net-Core"><a href="#Net-Core" class="headerlink" title=".Net Core"></a>.Net Core</h2><h3 id="1-’“Value”是-命名空间，但此处被当做-类型-来使用"><a href="#1-’“Value”是-命名空间，但此处被当做-类型-来使用" class="headerlink" title="1.’“Value”是 命名空间，但此处被当做 类型 来使用"></a>1.’“Value”是 命名空间，但此处被当做 类型 来使用</h3><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Application.Value</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IValueService</span> &#123;</span><br><span class="line">        Task&lt;ActionResult&lt;ICollection&lt;Value&gt;&gt;&gt; GetValues ();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Value and Application.Value are duplicate, change namespace to <code>namespace Application.ValueService</code>.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://tee1365.github.io/2020/08/10/Project%20Errors/" data-id="ckf94yjwk0004vc957s43cm2j" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Creating-New-Blog-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/09/Creating-New-Blog-1/" class="article-date">
+  <time datetime="2020-08-09T02:50:19.000Z" itemprop="datePublished">08-09-2020</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/09/Creating-New-Blog-1/">Creating New Blog 1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-Create-classlib-project"><a href="#1-Create-classlib-project" class="headerlink" title="1. Create classlib project"></a>1. Create classlib project</h3><h3 id="2-Create-reference-Add-entityframeworkcore-entityframeworkcore-sqlite"><a href="#2-Create-reference-Add-entityframeworkcore-entityframeworkcore-sqlite" class="headerlink" title="2. Create reference, Add entityframeworkcore, entityframeworkcore.sqlite"></a>2. Create reference, Add entityframeworkcore, entityframeworkcore.sqlite</h3><h3 id="3-Add-model-in-domain"><a href="#3-Add-model-in-domain" class="headerlink" title="3. Add model in domain"></a>3. Add model in domain</h3><h3 id="4-add-datacontext-in-persistence-folder-extend-DbContext"><a href="#4-add-datacontext-in-persistence-folder-extend-DbContext" class="headerlink" title="4. add datacontext in persistence folder,extend DbContext"></a>4. add datacontext in persistence folder,extend DbContext</h3>   <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">DataContext</span> (<span class="params">DbContextOptions options</span>) : <span class="title">base</span> (<span class="params">options</span>)</span> &#123; &#125;</span><br><span class="line"><span class="keyword">public</span> DbSet&lt;Value&gt; Values &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-add-datacontext-to-service"><a href="#5-add-datacontext-to-service" class="headerlink" title="5. add datacontext to service"></a>5. add datacontext to service</h3>   <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ConfigureServices</span></span><br><span class="line">services.AddDbContext&lt;DataContext&gt; (opt =&gt; &#123;</span><br><span class="line">   opt.UseSqlite (Configuration.GetConnectionString (<span class="string">"DefaultConnection"</span>));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-add-sqlite-connection-at-appsetting-json"><a href="#6-add-sqlite-connection-at-appsetting-json" class="headerlink" title="6. add sqlite connection at appsetting.json"></a>6. add sqlite connection at appsetting.json</h3>   <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// appsetting.json</span></span><br><span class="line">"ConnectionStrings": &#123;</span><br><span class="line">"DefaultConnection": "Data source=JustinBlog.db"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-add-dotnet-ef-via-dotnet-cli-migrate-database"><a href="#7-add-dotnet-ef-via-dotnet-cli-migrate-database" class="headerlink" title="7. add dotnet-ef via dotnet cli, migrate database"></a>7. add dotnet-ef via dotnet cli, migrate database</h3>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dotnet ef migrations add &quot;Initial&quot; -p Persistence -s JustionBlog</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-change-program-cs"><a href="#8-change-program-cs" class="headerlink" title="8. change program.cs"></a>8. change program.cs</h3>   <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// program.cs</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span> (<span class="params"><span class="keyword">string</span>[] args</span>)</span> &#123;</span><br><span class="line">   <span class="keyword">var</span> host = CreateHostBuilder (args).Build ();</span><br><span class="line">   <span class="keyword">using</span> (<span class="keyword">var</span> scope = host.Services.CreateScope ()) &#123;</span><br><span class="line">     <span class="keyword">var</span> services = scope.ServiceProvider;</span><br><span class="line">     <span class="keyword">try</span> &#123;</span><br><span class="line">       <span class="keyword">var</span> context = services.GetRequiredService&lt;DataContext&gt; ();</span><br><span class="line">       context.Database.Migrate ();</span><br><span class="line">     &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">       <span class="keyword">var</span> logger = services.GetRequiredService&lt;ILogger&lt;Program&gt;&gt; ();</span><br><span class="line">       logger.LogError (e, <span class="string">"An error occured during migration"</span>);</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   host.Run ();</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>   using语句，定义一个范围，在范围结束时处理对象。<br>   场景：<br>   当在某个代码段中使用了类的实例，而希望无论因为什么原因，只要离开了这个代码段就自动调用这个类实例的Dispose。</p>
+   <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> (Class1 cls1 = <span class="keyword">new</span> Class1(), cls2 = <span class="keyword">new</span> Class1())</span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">// the code using cls1, cls2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// call the Dispose on cls1 and cls2</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="9-Adding-test-data-at-datacontext-override-OnModelCreating-method-then-run-dotnet-ef-command-again"><a href="#9-Adding-test-data-at-datacontext-override-OnModelCreating-method-then-run-dotnet-ef-command-again" class="headerlink" title="9. Adding test data at datacontext, override OnModelCreating method, then run dotnet-ef command again"></a>9. Adding test data at datacontext, override OnModelCreating method, then run dotnet-ef command again</h3>   <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnModelCreating</span> (<span class="params">ModelBuilder builder</span>)</span> &#123;</span><br><span class="line">   builder.Entity&lt;Value&gt; ().HasData (</span><br><span class="line">      <span class="keyword">new</span> Value &#123; Id = <span class="number">1</span>, Name = <span class="string">"111"</span> &#125;,</span><br><span class="line">      <span class="keyword">new</span> Value &#123; Id = <span class="number">2</span>, Name = <span class="string">"222"</span> &#125;</span><br><span class="line">   );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-Adding-test-controller"><a href="#10-Adding-test-controller" class="headerlink" title="10. Adding test controller"></a>10. Adding test controller</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://tee1365.github.io/2020/08/09/Creating-New-Blog-1/" data-id="ckf94yjwl0005vc953w1chz2h" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Markdown-Cheatsheet" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/08/Markdown-Cheatsheet/" class="article-date">
+  <time datetime="2020-08-08T05:46:00.000Z" itemprop="datePublished">08-08-2020</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/08/Markdown-Cheatsheet/">Markdown Cheatsheet</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-Headers"><a href="#1-Headers" class="headerlink" title="1. Headers"></a>1. Headers</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># H1</span></span><br><span class="line"><span class="section">## H2</span></span><br><span class="line"><span class="section">### H3</span></span><br><span class="line"><span class="section">#### H4</span></span><br><span class="line"><span class="section">##### H5</span></span><br><span class="line"><span class="section">###### H6</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="H1"><a href="#H1" class="headerlink" title="H1"></a>H1</h1><h2 id="H2"><a href="#H2" class="headerlink" title="H2"></a>H2</h2><h3 id="H3"><a href="#H3" class="headerlink" title="H3"></a>H3</h3><h4 id="H4"><a href="#H4" class="headerlink" title="H4"></a>H4</h4><h5 id="H5"><a href="#H5" class="headerlink" title="H5"></a>H5</h5><h6 id="H6"><a href="#H6" class="headerlink" title="H6"></a>H6</h6><h2 id="2-Emphasis"><a href="#2-Emphasis" class="headerlink" title="2. Emphasis"></a>2. Emphasis</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="emphasis">*asterisks*</span> for italics</span><br><span class="line"><span class="strong">**asterisks**</span> for bold</span><br></pre></td></tr></table></figure>
+
+<p><em>asterisks</em> for italics</p>
+<p><strong>asterisks</strong> for bold</p>
+<h2 id="3-List"><a href="#3-List" class="headerlink" title="3. List"></a>3. List</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1. </span>First</span><br><span class="line"></span><br><span class="line"><span class="bullet">2. </span>Second</span><br><span class="line"></span><br><span class="line"><span class="bullet">* </span>First</span><br><span class="line"><span class="bullet">* </span>Second</span><br><span class="line"></span><br><span class="line">xxuse leading and trailing spaces for indentxx</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>First</p>
+</li>
+<li><p>Second</p>
+</li>
+</ol>
+<ul>
+<li><p>First</p>
+</li>
+<li><p>Second</p>
+<p>use leading and trailing spaces for indent</p>
+</li>
+</ul>
+<h2 id="4-Link-and-Images"><a href="#4-Link-and-Images" class="headerlink" title="4. Link and Images"></a>4. Link and Images</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">I'm an inline-style link</span>](<span class="link">https://www.google.com</span>)</span><br><span class="line"></span><br><span class="line">![<span class="string">alt text</span>](<span class="link">https://vignette.wikia.nocookie.net/akb48/images/1/15/Nagahama_Neru_2020.jpg/revision/latest/scale-to-width-down/340?cb=20200707141512 "Nagahama Neru"</span>)</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://www.google.com" target="_blank" rel="noopener">I’m an inline-style link</a></p>
+<p><img src="https://vignette.wikia.nocookie.net/akb48/images/1/15/Nagahama_Neru_2020.jpg/revision/latest/scale-to-width-down/340?cb=20200707141512" alt="alt text" title="Nagahama Neru"></p>
+<h2 id="5-Code"><a href="#5-Code" class="headerlink" title="5. Code"></a>5. Code</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">```language</span></span><br><span class="line"><span class="code">&lt;p&gt;code here&lt;/p&gt;</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
+
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;code here&lt;&#x2F;p&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-Divider"><a href="#6-Divider" class="headerlink" title="6. Divider"></a>6. Divider</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="emphasis">***</span></span><br><span class="line">Asterisks</span><br></pre></td></tr></table></figure>
+
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://tee1365.github.io/2020/08/08/Markdown-Cheatsheet/" data-id="ckf94yjwj0003vc953f27apsh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/07/ArrowCityMobile-Note/">ArrowCityMobile-Note</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/01/ArrowCityMobile-Setup/">ArrowCityMobile Setup</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/18/VS-Code-Tips/">VS Code Tips</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/12/Creating-New-Blog-3/">Creating New Blog 3</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/10/Creating-New-Blog-2/">Creating New Blog 2</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Justin Song<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

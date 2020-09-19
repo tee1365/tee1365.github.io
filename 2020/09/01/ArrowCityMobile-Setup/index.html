@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>ArrowCityMobile Setup | Justin&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="redux toolkit modify state using immer serializableCheck has conflict with redux persist, avoid conflict by using ignoredActions  1234567891011121314151617import &amp;#123;  persistStore,  persistReducer,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ArrowCityMobile Setup">
+<meta property="og:url" content="https://tee1365.github.io/2020/09/01/ArrowCityMobile-Setup/index.html">
+<meta property="og:site_name" content="Justin&#39;s Blog">
+<meta property="og:description" content="redux toolkit modify state using immer serializableCheck has conflict with redux persist, avoid conflict by using ignoredActions  1234567891011121314151617import &amp;#123;  persistStore,  persistReducer,">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-31T13:31:57.000Z">
+<meta property="article:modified_time" content="2020-09-19T03:32:40.006Z">
+<meta property="article:author" content="Justin Song">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Justin&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Justin&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://tee1365.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ArrowCityMobile-Setup" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/01/ArrowCityMobile-Setup/" class="article-date">
+  <time datetime="2020-08-31T13:31:57.000Z" itemprop="datePublished">09-01-2020</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ArrowCityMobile Setup
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="redux-toolkit"><a href="#redux-toolkit" class="headerlink" title="redux toolkit"></a>redux toolkit</h2><ol>
+<li><a href="https://immerjs.github.io/immer/docs/return" target="_blank" rel="noopener">modify state using immer</a></li>
+<li>serializableCheck has conflict with redux persist, avoid conflict by using ignoredActions</li>
+</ol>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  persistStore,</span><br><span class="line">  persistReducer,</span><br><span class="line">  FLUSH,</span><br><span class="line">  REHYDRATE,</span><br><span class="line">  PAUSE,</span><br><span class="line">  PERSIST,</span><br><span class="line">  PURGE,</span><br><span class="line">  REGISTER,</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">"redux-persist"</span>;</span><br><span class="line"></span><br><span class="line">  middleware: <span class="function">(<span class="params">getDefaultMiddleware</span>) =&gt;</span></span><br><span class="line">    getDefaultMiddleware(&#123;</span><br><span class="line">      serializableCheck: &#123;</span><br><span class="line">        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;),</span><br></pre></td></tr></table></figure>
+
+<h2 id="react-navigation"><a href="#react-navigation" class="headerlink" title="react navigation"></a>react navigation</h2><ol>
+<li>navigate in redux actions<br>create a ref and assign to NavigationContainer</li>
+</ol>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//navigationHelpers.ts</span></span><br><span class="line"><span class="keyword">const</span> navigationRef = React.createRef&lt;NavigationContainerRef&gt;();</span><br><span class="line"><span class="comment">//Navigation.tsx</span></span><br><span class="line">&lt;NavigationContainer</span><br><span class="line"> linking=&#123;LinkingConfiguration&#125;</span><br><span class="line"> ref=&#123;navigationHelpers.navigationRef&#125;</span><br><span class="line">&gt;</span><br><span class="line"> &lt;RootNavigator /&gt;</span><br><span class="line">&lt;<span class="regexp">/NavigationContainer&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>then use ref to create a custom navigate method</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//navigationHelpers.ts</span></span><br><span class="line"><span class="keyword">const</span> navigate = &lt;RouteName <span class="keyword">extends</span> keyof ParamListBase&gt;(</span><br><span class="line">  name: <span class="built_in">string</span>,</span><br><span class="line">  params?: ParamListBase[RouteName]</span><br><span class="line">): <span class="function"><span class="params">void</span> =&gt;</span> &#123;</span><br><span class="line">  navigationRef.current?.navigate(name, params);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="react-native-debugger"><a href="#react-native-debugger" class="headerlink" title="react native debugger"></a>react native debugger</h2><ol>
+<li>network inspection<br>use <code>http://10.0.2.2:5000/api/mob</code> when network inspection disabled<br>use <code>http://localhost:5000/api/mob</code> when network inspection enabled</li>
+</ol>
+<h2 id="Form-using-Formik-and-yup"><a href="#Form-using-Formik-and-yup" class="headerlink" title="Form using Formik and yup"></a>Form using Formik and yup</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">&lt;Formik</span><br><span class="line"> initialValues=&#123;&#123; email: <span class="string">""</span>, password: <span class="string">""</span>, isRememberMe: <span class="literal">false</span> &#125;&#125;</span><br><span class="line"> onSubmit=&#123;<span class="function">(<span class="params">values: ILogin</span>) =&gt;</span> &#123;</span><br><span class="line">   dispatch(loginAsync(values));</span><br><span class="line"> &#125;&#125;</span><br><span class="line"> validationSchema=&#123;yup.object().shape(&#123;</span><br><span class="line">   email: yup.string().email().required(),</span><br><span class="line">   password: yup.string().required(),</span><br><span class="line"> &#125;)&#125;</span><br><span class="line">&gt;</span><br><span class="line"> &#123;(&#123;</span><br><span class="line">   values,</span><br><span class="line">   handleChange,</span><br><span class="line">   handleSubmit,</span><br><span class="line">   setFieldValue,</span><br><span class="line">   setFieldTouched,</span><br><span class="line">   touched,</span><br><span class="line">   errors,</span><br><span class="line">   isValid,</span><br><span class="line"> &#125;) =&gt; (</span><br><span class="line">   &lt;&gt;</span><br><span class="line">     &lt;View style=&#123;styles.inputContainer&#125;&gt;</span><br><span class="line">       &lt;TextInput</span><br><span class="line">         style=&#123;styles.input&#125;</span><br><span class="line">         mode=<span class="string">"outlined"</span></span><br><span class="line">         label=<span class="string">"Email"</span></span><br><span class="line">         value=&#123;values.email&#125;</span><br><span class="line">         onChangeText=&#123;handleChange(<span class="string">"email"</span>)&#125;</span><br><span class="line">         onBlur=&#123;<span class="function"><span class="params">()</span> =&gt;</span> setFieldTouched(<span class="string">"email"</span>)&#125;</span><br><span class="line">       /&gt;</span><br><span class="line">       &lt;HelperText</span><br><span class="line">         <span class="keyword">type</span>=<span class="string">"error"</span></span><br><span class="line">         visible=&#123;touched.email &amp;&amp; !!errors.email&#125;</span><br><span class="line">       &gt;</span><br><span class="line">         &#123;errors.email&#125;</span><br><span class="line">       &lt;<span class="regexp">/HelperText&gt;</span></span><br><span class="line"><span class="regexp">       &lt;TextInput</span></span><br><span class="line"><span class="regexp">         style=&#123;styles.input&#125;</span></span><br><span class="line"><span class="regexp">         mode="outlined"</span></span><br><span class="line"><span class="regexp">         label="Password"</span></span><br><span class="line"><span class="regexp">         value=&#123;values.password&#125;</span></span><br><span class="line"><span class="regexp">         onChangeText=&#123;handleChange("password")&#125;</span></span><br><span class="line"><span class="regexp">         onBlur=&#123;() =&gt; setFieldTouched("password")&#125;</span></span><br><span class="line"><span class="regexp">         secureTextEntry</span></span><br><span class="line"><span class="regexp">       /</span>&gt;</span><br><span class="line">       &lt;HelperText</span><br><span class="line">         <span class="keyword">type</span>=<span class="string">"error"</span></span><br><span class="line">         visible=&#123;!!(touched.password &amp;&amp; !!errors.password)&#125;</span><br><span class="line">       &gt;</span><br><span class="line">         &#123;errors.password&#125;</span><br><span class="line">       &lt;<span class="regexp">/HelperText&gt;</span></span><br><span class="line"><span class="regexp">       &lt;View style=&#123;styles.switchContainer&#125;&gt;</span></span><br><span class="line"><span class="regexp">         &lt;Text&gt;Remember Me&lt;/</span>Text&gt;</span><br><span class="line">         &lt;Switch</span><br><span class="line">           value=&#123;values.isRememberMe&#125;</span><br><span class="line">           onValueChange=&#123;<span class="function">(<span class="params">value</span>) =&gt;</span></span><br><span class="line">             setFieldValue(<span class="string">"isRememberMe"</span>, value)</span><br><span class="line">           &#125;</span><br><span class="line">         /&gt;</span><br><span class="line">       &lt;<span class="regexp">/View&gt;</span></span><br><span class="line"><span class="regexp">     &lt;/</span>View&gt;</span><br><span class="line">     &lt;Button</span><br><span class="line">       icon=<span class="string">"login"</span></span><br><span class="line">       mode=<span class="string">"contained"</span></span><br><span class="line">       color=&#123;colors.accent&#125;</span><br><span class="line">       onPress=&#123;handleSubmit&#125;</span><br><span class="line">       disabled=&#123;!isValid&#125;</span><br><span class="line">     &gt;</span><br><span class="line">       Submit</span><br><span class="line">     &lt;<span class="regexp">/Button&gt;</span></span><br><span class="line"><span class="regexp">   &lt;/</span>&gt;</span><br><span class="line"> )&#125;</span><br><span class="line">&lt;<span class="regexp">/Formik&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="axios"><a href="#axios" class="headerlink" title="axios"></a>axios</h2><ol>
+<li>set request interceptor in app.tsx</li>
+</ol>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//App.tsx</span></span><br><span class="line"><span class="keyword">const</span> &#123; token &#125; = store.getState().user;</span><br><span class="line">useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line"> <span class="keyword">if</span> (token.accessToken) &#123;</span><br><span class="line">   setClientToken(token.accessToken);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;, [token.accessToken]);</span><br><span class="line"><span class="comment">//agent.ts</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> setClientToken = (token: <span class="built_in">string</span>): <span class="function"><span class="params">void</span> =&gt;</span> &#123;</span><br><span class="line">  axios.interceptors.request.use(<span class="function">(<span class="params">config: AxiosRequestConfig</span>) =&gt;</span> &#123;</span><br><span class="line">    config.headers.Authorization = <span class="string">`Bearer <span class="subst">$&#123;token&#125;</span>`</span>;</span><br><span class="line">    <span class="keyword">return</span> config;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>setting request interceptor in app.tsx can prevent dependency cycle.</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//without setting request interceptor in app.tsx</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//agent</span></span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> rootstore</span><br><span class="line"></span><br><span class="line"><span class="comment">//rootstore</span></span><br><span class="line"><span class="keyword">import</span> userReducer <span class="keyword">from</span> userReducer</span><br><span class="line"></span><br><span class="line"><span class="comment">//userReducer</span></span><br><span class="line"><span class="keyword">import</span> &#123;AuthApi&#125; <span class="keyword">from</span> agent</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://tee1365.github.io/2020/09/01/ArrowCityMobile-Setup/" data-id="ckf94yjwc0000vc9595snb0dr" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/07/ArrowCityMobile-Note/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          ArrowCityMobile-Note
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/08/18/VS-Code-Tips/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">VS Code Tips</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/07/ArrowCityMobile-Note/">ArrowCityMobile-Note</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/01/ArrowCityMobile-Setup/">ArrowCityMobile Setup</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/18/VS-Code-Tips/">VS Code Tips</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/12/Creating-New-Blog-3/">Creating New Blog 3</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/10/Creating-New-Blog-2/">Creating New Blog 2</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Justin Song<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

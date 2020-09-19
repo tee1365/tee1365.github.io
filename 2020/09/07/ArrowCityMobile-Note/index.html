@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>ArrowCityMobile-Note | Justin&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="expo 键盘弹出时影响布局 底部的button被顶到上面在app.json中设置softwareKeyboardLayoutMode  123&quot;android&quot;: &amp;#123;  &quot;softwareKeyboardLayoutMode&quot;: &quot;pan&quot;&amp;#125;  typecript use typeguard helper to solve partial  12345678910111213">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ArrowCityMobile-Note">
+<meta property="og:url" content="https://tee1365.github.io/2020/09/07/ArrowCityMobile-Note/index.html">
+<meta property="og:site_name" content="Justin&#39;s Blog">
+<meta property="og:description" content="expo 键盘弹出时影响布局 底部的button被顶到上面在app.json中设置softwareKeyboardLayoutMode  123&quot;android&quot;: &amp;#123;  &quot;softwareKeyboardLayoutMode&quot;: &quot;pan&quot;&amp;#125;  typecript use typeguard helper to solve partial  12345678910111213">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-07T06:15:51.000Z">
+<meta property="article:modified_time" content="2020-09-19T03:50:30.624Z">
+<meta property="article:author" content="Justin Song">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Justin&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Justin&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://tee1365.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ArrowCityMobile-Note" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/07/ArrowCityMobile-Note/" class="article-date">
+  <time datetime="2020-09-07T06:15:51.000Z" itemprop="datePublished">09-07-2020</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ArrowCityMobile-Note
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="expo"><a href="#expo" class="headerlink" title="expo"></a>expo</h2><ol>
+<li>键盘弹出时影响布局 底部的button被顶到上面<br>在app.json中设置softwareKeyboardLayoutMode</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"android": &#123;</span><br><span class="line">  "softwareKeyboardLayoutMode": "pan"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="typecript"><a href="#typecript" class="headerlink" title="typecript"></a>typecript</h2><ol>
+<li>use typeguard helper to solve partial</li>
+</ol>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> typeGuard = &lt;T, K <span class="keyword">extends</span> keyof T&gt;(</span><br><span class="line">  obj: T,</span><br><span class="line">  ...props: K[]</span><br><span class="line">): obj is T &amp; Required&lt;Pick&lt;T, K&gt;&gt; =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> props.every(<span class="function">(<span class="params">k</span>) =&gt;</span> <span class="keyword">typeof</span> obj[k] !== <span class="string">"undefined"</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// its hard to use value inside newAccessToken since all property are string|undefined</span></span><br><span class="line"><span class="keyword">const</span> newAccessToken:Partial&lt;IToken&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">// use typeguard</span></span><br><span class="line"><span class="keyword">if</span>(typeGuard(newAccessToken, <span class="string">"accessToken"</span>, <span class="string">"accessTokenExpiryDate"</span>)&#123;</span><br><span class="line">  <span class="keyword">const</span> newToken: ILoginToken = &#123;</span><br><span class="line">     refreshToken,</span><br><span class="line">     refreshTokenExpiryDate,</span><br><span class="line">     ...newAccessToken,</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="components"><a href="#components" class="headerlink" title="components"></a>components</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">interface OverlayImageStyle extends ViewStyle &#123;</span><br><span class="line">  overlayColor?: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export interface ImageOverlayProps extends ImageBackgroundProps &#123;</span><br><span class="line">  style?: StyleProp&lt;OverlayImageStyle&gt;;</span><br><span class="line">  children: React.ReactNode;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const DEFAULT_OVERLAY_COLOR &#x3D; &quot;rgba(0, 0, 0, 0.45)&quot;;</span><br><span class="line"></span><br><span class="line">export const ImageOverlay &#x3D; (</span><br><span class="line">  props: ImageOverlayProps</span><br><span class="line">): React.ReactElement&lt;ImageBackgroundProps&gt; &#x3D;&gt; &#123;</span><br><span class="line">  const &#123; style, children, ...imageBackgroundProps &#125; &#x3D; props;</span><br><span class="line">  const &#123; overlayColor, ...imageBackgroundStyle &#125; &#x3D; StyleSheet.flatten(style);</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;ImageBackground &#123;...imageBackgroundProps&#125; style&#x3D;&#123;imageBackgroundStyle&#125;&gt;</span><br><span class="line">      &lt;View</span><br><span class="line">        style&#x3D;&#123;[</span><br><span class="line">          StyleSheet.absoluteFill,</span><br><span class="line">          &#123; backgroundColor: overlayColor || DEFAULT_OVERLAY_COLOR &#125;,</span><br><span class="line">        ]&#125;</span><br><span class="line">      &#x2F;&gt;</span><br><span class="line">      &#123;children&#125;</span><br><span class="line">    &lt;&#x2F;ImageBackground&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="styled-components"><a href="#styled-components" class="headerlink" title="styled-components"></a>styled-components</h2><ol>
+<li>have to add units</li>
+<li>use <code>flex:1 0</code> instead of <code>flex:1</code></li>
+</ol>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> AuthInnerContainer = styled.View&lt;ViewProps&gt;<span class="string">`</span></span><br><span class="line"><span class="string">  flex: 1 0</span></span><br><span class="line"><span class="string">  width: <span class="subst">$&#123;LayoutConst.width * <span class="number">0.8</span>&#125;</span>px</span></span><br><span class="line"><span class="string">  height: <span class="subst">$&#123;LayoutConst.height&#125;</span>px</span></span><br><span class="line"><span class="string">`</span>;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://tee1365.github.io/2020/09/07/ArrowCityMobile-Note/" data-id="ckf94yjwi0002vc951z5c3ss5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/09/01/ArrowCityMobile-Setup/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ArrowCityMobile Setup</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/07/ArrowCityMobile-Note/">ArrowCityMobile-Note</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/01/ArrowCityMobile-Setup/">ArrowCityMobile Setup</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/18/VS-Code-Tips/">VS Code Tips</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/12/Creating-New-Blog-3/">Creating New Blog 3</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/10/Creating-New-Blog-2/">Creating New Blog 2</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Justin Song<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
