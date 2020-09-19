@@ -44,8 +44,7 @@ tags:
 2. usage of generic functional components in tsx files
 
     ```tsx
-    // use <T,> to tell compiler this is a generic
-    // use <T extends unknown> instend of <T,> works as well
+    // use <T,> or <T extends unknown> to tell compiler this is a generic
     const A = <T,>(myObject: T) : React.ReactElement => <h1>{myObject}</h1>;
 
     // usage
