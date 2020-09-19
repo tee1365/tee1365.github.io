@@ -73,52 +73,52 @@ public class ErrorHandlingMiddleware {
 
 ### 3. Add swagger
 
-  ```text
-  dotnet add JustinBlog.csproj package Swashbuckle.AspNetCore -v 5.5.0
-  ```
+```shell
+dotnet add JustinBlog.csproj package Swashbuckle.AspNetCore -v 5.5.0
+```
 
-  ```cs
-  // ConfigureServices
-  services.AddSwaggerGen();
+```cs
+// ConfigureServices
+services.AddSwaggerGen();
 
-  // Configure
-  app.UseSwagger();
-  app.UseSwaggerUI(c =>{
-      c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-  });
-  ```
+// Configure
+app.UseSwagger();
+app.UseSwaggerUI(c =>{
+  c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+});
+```
 
-  enter `http://localhost:5000/swagger` to open swagger ui
+enter `http://localhost:5000/swagger` to open swagger ui
 
 #### Enabling XML comments
 
-  ```xml
-  // add config in .csproj file
-  <PropertyGroup>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <NoWarn>$(NoWarn);1591</NoWarn>
-  </PropertyGroup>
-  ```
+```xml
+// add config in .csproj file
+<PropertyGroup>
+  <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  <NoWarn>$(NoWarn);1591</NoWarn>
+</PropertyGroup>
+```
 
-  ```cs
-  // update service config
-  services.AddSwaggerGen (c => {
-    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    var xmlPath = Path.Combine (AppContext.BaseDirectory, xmlFile);
-    c.IncludeXmlComments (xmlPath);
-  });
-  ```
+```cs
+// update service config
+services.AddSwaggerGen (c => {
+  var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+  var xmlPath = Path.Combine (AppContext.BaseDirectory, xmlFile);
+  c.IncludeXmlComments (xmlPath);
+});
+```
 
-  use summary label to create summary of api, use `[Produces ("application/json")]` to generate content type.
+use summary label to create summary of api, use `[Produces ("application/json")]` to generate content type.
 
-  ```cs
-  /// <summary>
-  /// Deletes a specific TodoItem.
-  /// </summary>
-  [Produces ("application/json")]
-  [HttpGet]
-  public async Task<ActionResult<ICollection<Value>>> GetValues () {
-      var values = await _context.Values.ToListAsync ();
-      return Ok (values);
-  }
-  ```
+```cs
+/// <summary>
+/// Deletes a specific TodoItem.
+/// </summary>
+[Produces ("application/json")]
+[HttpGet]
+public async Task<ActionResult<ICollection<Value>>> GetValues () {
+    var values = await _context.Values.ToListAsync ();
+    return Ok (values);
+}
+```

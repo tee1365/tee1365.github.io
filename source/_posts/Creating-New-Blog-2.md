@@ -6,7 +6,7 @@ tags:
 
 ### 1. Create new project via create-react-app
 
-```text
+```shell
 npx create-react-app my-app --template typescript
 ```
 
@@ -47,7 +47,12 @@ I installed eslint@6.6.0 instead of eslint@latest since there is some compatible
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
-    "prettier/prettier": 2,
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
     "react/jsx-filename-extension": [1, { "extensions": [".jsx", ".tsx"] }],
     "react-hooks/exhaustive-deps": "warn",
     "@typescript-eslint/indent": "off",
@@ -75,7 +80,7 @@ I installed eslint@6.6.0 instead of eslint@latest since there is some compatible
 
 add router in index with history, add route in app.
 
-```ts
+```tsx
 // api/createBrowserHistory
 import { createBrowserHistory } from "history";
 export default createBrowserHistory();
@@ -97,7 +102,7 @@ export default createBrowserHistory();
 
 use provider to wrap router in index.
 
-```ts
+```tsx
 // index
 <Provider store={store}>
   <PersistGate loading={null} persistor={persistor}>

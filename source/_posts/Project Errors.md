@@ -8,21 +8,21 @@ tags:
 
 ### 1. error  Don't use `{}` as a type. `{}` actually means "any non-nullish value"
 
-  use `Record<string, unknown>` instead of {}
+use `Record<string, unknown>` instead of {}
 
-  ```js
-  //incorrect
-  post: (url: string, body: {}) =>
-  axios.post(url, body).then(responseBody)
+```ts
+//incorrect
+post: (url: string, body: {}) =>
+axios.post(url, body).then(responseBody)
 
-  //correct
-  post: (url: string, body: Record<string, unknown>) =>
-  axios.post(url, body).then(responseBody)
-  ```
+//correct
+post: (url: string, body: Record<string, unknown>) =>
+axios.post(url, body).then(responseBody)
+```
 
 ### 2. Do not access Object.prototype method 'hasOwnProperty' from target object
 
-```js
+```ts
 // incorrect
 data.errors.hasOwnProperty("id")
 // correct
@@ -33,7 +33,7 @@ Object.prototype.hasOwnProperty.call(data.errors,"id")
 
 ### Type 'unknown' is not assignable to type 'ReactNode'
 
-```js
+```tsx
 // incorrect, need to specify Object.values' type
 Object.values(error.data.errors)  
   .flat()
@@ -55,9 +55,9 @@ Object.values<string>(error.data.errors)
 
 ```cs
 namespace Application.Value {
-    public interface IValueService {
-        Task<ActionResult<ICollection<Value>>> GetValues ();
-    }
+  public interface IValueService {
+    Task<ActionResult<ICollection<Value>>> GetValues ();
+  }
 }
 ```
 
