@@ -74,3 +74,16 @@ export const ImageOverlay = (
   );
 };
 ```
+
+## styled-components
+
+1. have to add units
+2. use `flex:1 0` instead of `flex:1`
+
+```ts
+export const AuthInnerContainer = styled.View<ViewProps>`
+  flex: 1 0
+  width: ${LayoutConst.width * 0.8}px
+  height: ${LayoutConst.height}px
+`;
+```
