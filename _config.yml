@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Blog
+title: tee1365's Blog
 subtitle: ''
 description: ''
 keywords:
-author: Justin Song
+author: tee1365
 language: en
 timezone: ''
 
@@ -102,4 +102,6 @@ theme: landscape
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git
+  repo: git@github.com:tee1365/tee1365.github.io.git
+  branch: [master]
