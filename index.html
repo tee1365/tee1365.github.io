@@ -71,6 +71,160 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-frontend-setup" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/01/06/frontend-setup/" class="article-date">
+  <time class="dt-published" datetime="2022-01-06T04:33:14.000Z" itemprop="datePublished">2022-01-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/01/06/frontend-setup/">frontend-setup</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="eslint"><a href="#eslint" class="headerlink" title="eslint"></a>eslint</h2><p><a target="_blank" rel="noopener" href="https://andrebnassis.medium.com/setting-eslint-on-a-react-typescript-project-2021-1190a43ffba">eslint</a><br>npm install eslint –save-dev<br>npx eslint –init<br>npm install eslint-config-airbnb-typescript –save-dev<br>npx install-peerdeps –dev eslint-config-airbnb-typescript<br>npm install –save-dev eslint-config-prettier</p>
+<h2 id="react-router"><a href="#react-router" class="headerlink" title="react router"></a>react router</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> history = useHistory();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleClick</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  history.push(<span class="string">&quot;/home&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="problem"><a href="#problem" class="headerlink" title="problem"></a>problem</h2><ol>
+<li><p>We don’t need to import react to use jsx in react 17, although eslint give errors with import</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;react/jsx-uses-react&quot;</span>: <span class="string">&quot;off&quot;</span>,</span><br><span class="line"><span class="string">&quot;react/react-in-jsx-scope&quot;</span>: <span class="string">&quot;off&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>Parsing error “parserOptions.project” has been set for @typescript-eslint/parser</p>
+<p> Add it to the includes in tsconfig.json</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;include&quot;</span>: [</span><br><span class="line">  <span class="string">&quot;.eslintrc.js&quot;</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tee1365.github.io/2022/01/06/frontend-setup/" data-id="cky2har7600021c95b5mm3eqd" data-title="frontend-setup" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-common" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/01/06/common/" class="article-date">
+  <time class="dt-published" datetime="2022-01-06T04:23:52.000Z" itemprop="datePublished">2022-01-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/01/06/common/">common</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="1-type-configuration"><a href="#1-type-configuration" class="headerlink" title="1. type configuration"></a>1. type configuration</h2><p>  Error: Type attribute is set as <code>&quot;postgresql|sqlite....&quot;</code>. If we pass “postgresql” in, then it will seen as a string instead of “postgresql|sqlite….”.</p>
+<p>  Since this configuration is consumed by <code>MikroORM.init</code>, we can get the type which should be passed like this. This will solve the error and give us auto code completion.</p>
+  <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">dbName</span>: <span class="string">&#x27;lireddit&#x27;</span>,</span><br><span class="line">  <span class="attr">type</span>: <span class="string">&#x27;postgresql&#x27;</span>,</span><br><span class="line">  <span class="attr">debug</span>: !__prod__,</span><br><span class="line">  <span class="attr">entities</span>: [Post],</span><br><span class="line">  <span class="attr">migrations</span>: &#123;</span><br><span class="line">    <span class="attr">path</span>: path.join(__dirname, <span class="string">&#x27;./migrations&#x27;</span>),</span><br><span class="line">    <span class="attr">pattern</span>: <span class="regexp">/^[\w-]+\d+\.[tj]s$/</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125; <span class="keyword">as</span> Parameters&lt;<span class="keyword">typeof</span> MikroORM.init&gt;[<span class="number">0</span>];</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-add-new-type-to-req-session-in-express"><a href="#2-add-new-type-to-req-session-in-express" class="headerlink" title="2. add new type to req.session in express"></a>2. add new type to req.session in express</h2><p>  If we write something like this <code>req.session.userId = user.id;</code>, it will give a error, because there is no <code>userId</code> in the <code>req.session</code>. The type of <code>req.session</code> is set by other libraries, so we need declaration merging to add new types into it. We can write declaration merging like the following code in the file where session is used. The type will be merged into the original type automatically.</p>
+  <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// resolver/user.ts</span></span><br><span class="line"><span class="keyword">declare</span> <span class="built_in">module</span> <span class="string">&#x27;express-session&#x27;</span> &#123;</span><br><span class="line">  <span class="keyword">interface</span> Session &#123;</span><br><span class="line">    <span class="attr">userId</span>: <span class="built_in">number</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tee1365.github.io/2022/01/06/common/" data-id="cky2har7100001c959ki48j7m" data-title="common" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-sqlite" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/01/06/sqlite/" class="article-date">
+  <time class="dt-published" datetime="2022-01-06T04:23:00.000Z" itemprop="datePublished">2022-01-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/01/06/sqlite/">sqlite</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="Add-mock-data-into-sqlite-using-typeorm"><a href="#Add-mock-data-into-sqlite-using-typeorm" class="headerlink" title="Add mock data into sqlite using typeorm"></a>Add mock data into sqlite using typeorm</h2><ol>
+<li><p>run command <code>npx typeorm migration:create -n FakePosts</code><br>This will create a blank migration file.</p>
+</li>
+<li><p>Get mock data from mockaroo<br>set the format to sql, set the table name to the correct one. Last, download the sql file.</p>
+</li>
+<li><p>modify sql file<br>sqlite have different insert style compared to other databases. So we have to modify the sql file.<br>Some rules we can use:</p>
+<ol>
+<li><p>replace <code>INSERT INTO artists (name) VALUES</code> to blank, then add it at start.</p>
+</li>
+<li><p>replace <code>;</code> to <code>,</code>. Don’t forget to add <code>;</code> in the end.</p>
+</li>
+</ol>
+<p>sqlite</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> artists (name)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">(&quot;Buddy Rich&quot;),</span><br><span class="line">(&quot;Candido&quot;),</span><br><span class="line">(&quot;Charlie Byrd&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>others</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> artists (name) <span class="keyword">VALUES</span> (&quot;Buddy Rich&quot;);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> artists (name) <span class="keyword">VALUES</span> (&quot;Candido&quot;);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> artists (name) <span class="keyword">VALUES</span> (&quot;Charlie Byrd&quot;);</span><br></pre></td></tr></table></figure></li>
+<li><p>create migration folder and move file into it. Modify the file, add <code>await queryRunner.query(``)</code> under up. Then paste sql statement from sql file into ``.</p>
+</li>
+<li><p>add configuration in index<br>add <code>await connection.runMigrations();</code><br>then add <code>migrations: [path.join(__dirname, &#39;./migrations/*&#39;)]</code> in the connection option</p>
+</li>
+<li><p>run npm start and check if there is any error</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tee1365.github.io/2022/01/06/sqlite/" data-id="cky2har7400011c9568an8v8t" data-title="sqlite" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-postgresql" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/01/06/postgresql/" class="article-date">
@@ -275,19 +429,23 @@
       <ul>
         
           <li>
+            <a href="/2022/01/06/frontend-setup/">frontend-setup</a>
+          </li>
+        
+          <li>
+            <a href="/2022/01/06/common/">common</a>
+          </li>
+        
+          <li>
+            <a href="/2022/01/06/sqlite/">sqlite</a>
+          </li>
+        
+          <li>
             <a href="/2022/01/06/postgresql/">postgresql</a>
           </li>
         
           <li>
             <a href="/2022/01/06/nestjs/">nestjs</a>
-          </li>
-        
-          <li>
-            <a href="/2022/01/06/typeorm/">typeorm</a>
-          </li>
-        
-          <li>
-            <a href="/2022/01/06/flicket-problem/">flicket-problem</a>
           </li>
         
       </ul>

@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>nestjs | tee1365&#39;s Blog</title>
+  <title>frontend-setup | tee1365&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="dynamic moduleDynamic module allows us to create customizable modules. In the following example, HttpModule.register(&amp;#123;&amp;#125;) create a new httpmodule with no configuration. If we don’t do this, w">
+  <meta name="description" content="eslinteslintnpm install eslint –save-devnpx eslint –initnpm install eslint-config-airbnb-typescript –save-devnpx install-peerdeps –dev eslint-config-airbnb-typescriptnpm install –save-dev eslint-confi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="nestjs">
-<meta property="og:url" content="http://tee1365.github.io/2022/01/06/nestjs/index.html">
+<meta property="og:title" content="frontend-setup">
+<meta property="og:url" content="http://tee1365.github.io/2022/01/06/frontend-setup/index.html">
 <meta property="og:site_name" content="tee1365&#39;s Blog">
-<meta property="og:description" content="dynamic moduleDynamic module allows us to create customizable modules. In the following example, HttpModule.register(&amp;#123;&amp;#125;) create a new httpmodule with no configuration. If we don’t do this, w">
+<meta property="og:description" content="eslinteslintnpm install eslint –save-devnpx eslint –initnpm install eslint-config-airbnb-typescript –save-devnpx install-peerdeps –dev eslint-config-airbnb-typescriptnpm install –save-dev eslint-confi">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-01-06T02:07:28.000Z">
-<meta property="article:modified_time" content="2022-01-06T02:08:49.752Z">
+<meta property="article:published_time" content="2022-01-06T04:33:14.000Z">
+<meta property="article:modified_time" content="2022-01-06T04:37:11.252Z">
 <meta property="article:author" content="tee1365">
 <meta name="twitter:card" content="summary">
   
@@ -73,10 +73,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-nestjs" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-frontend-setup" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2022/01/06/nestjs/" class="article-date">
-  <time class="dt-published" datetime="2022-01-06T02:07:28.000Z" itemprop="datePublished">2022-01-06</time>
+    <a href="/2022/01/06/frontend-setup/" class="article-date">
+  <time class="dt-published" datetime="2022-01-06T04:33:14.000Z" itemprop="datePublished">2022-01-06</time>
 </a>
     
   </div>
@@ -87,7 +87,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      nestjs
+      frontend-setup
     </h1>
   
 
@@ -95,14 +95,21 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="dynamic-module"><a href="#dynamic-module" class="headerlink" title="dynamic module"></a>dynamic module</h2><p>Dynamic module allows us to create customizable modules. In the following example, <code>HttpModule.register(&#123;&#125;)</code> create a new httpmodule with no configuration. If we don’t do this, we can’t set configuration properly(you may get baseURL from other places even if you set a new baseURL here). <code>TypeOrmModule.forFeature([StoryWebhook])</code> is a dynamic module as well.</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Module</span>(&#123;</span><br><span class="line">  <span class="attr">imports</span>: [TypeOrmModule.forFeature([StoryWebhook]),HttpModule.register(&#123;&#125;)],</span><br><span class="line">  <span class="attr">controllers</span>: [SocialController],</span><br><span class="line">  <span class="attr">providers</span>: [SocialService, SocialIgStoryService, SocialHttpService, SocialIgStoryResolver],</span><br><span class="line">  <span class="attr">exports</span>: [SocialService]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">SocialModule</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="eslint"><a href="#eslint" class="headerlink" title="eslint"></a>eslint</h2><p><a target="_blank" rel="noopener" href="https://andrebnassis.medium.com/setting-eslint-on-a-react-typescript-project-2021-1190a43ffba">eslint</a><br>npm install eslint –save-dev<br>npx eslint –init<br>npm install eslint-config-airbnb-typescript –save-dev<br>npx install-peerdeps –dev eslint-config-airbnb-typescript<br>npm install –save-dev eslint-config-prettier</p>
+<h2 id="react-router"><a href="#react-router" class="headerlink" title="react router"></a>react router</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> history = useHistory();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleClick</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  history.push(<span class="string">&quot;/home&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="handle-response-in-http-module"><a href="#handle-response-in-http-module" class="headerlink" title="handle response in http module"></a>handle response in http module</h2>
+<h2 id="problem"><a href="#problem" class="headerlink" title="problem"></a>problem</h2><ol>
+<li><p>We don’t need to import react to use jsx in react 17, although eslint give errors with import</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;react/jsx-uses-react&quot;</span>: <span class="string">&quot;off&quot;</span>,</span><br><span class="line"><span class="string">&quot;react/react-in-jsx-scope&quot;</span>: <span class="string">&quot;off&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>Parsing error “parserOptions.project” has been set for @typescript-eslint/parser</p>
+<p> Add it to the includes in tsconfig.json</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;include&quot;</span>: [</span><br><span class="line">  <span class="string">&quot;.eslintrc.js&quot;</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
+</ol>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tee1365.github.io/2022/01/06/nestjs/" data-id="cky2bzsdl00010k953r1336vv" data-title="nestjs" class="article-share-link">Share</a>
+      <a data-url="http://tee1365.github.io/2022/01/06/frontend-setup/" data-id="cky2har7600021c95b5mm3eqd" data-title="frontend-setup" class="article-share-link">Share</a>
       
       
       
@@ -112,19 +119,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2022/01/06/postgresql/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          postgresql
-        
-      </div>
-    </a>
   
-  
-    <a href="/2022/01/06/typeorm/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2022/01/06/common/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">typeorm</div>
+      <div class="article-nav-title">common</div>
     </a>
   
 </nav>
