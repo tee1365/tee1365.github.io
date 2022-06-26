@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>flicket project notice | tee1365&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="1. how to type onChange for Select  gatewayOptions is the value of option for this component.    admin(multi):      1onChange&#x3D;&amp;#123;(val: typeof gatewayOptions[number][&quot;value&quot;][]) &#x3D;&gt; setG">
+<meta property="og:type" content="article">
+<meta property="og:title" content="flicket project notice">
+<meta property="og:url" content="http://tee1365.github.io/2022/06/26/notice/index.html">
+<meta property="og:site_name" content="tee1365&#39;s Blog">
+<meta property="og:description" content="1. how to type onChange for Select  gatewayOptions is the value of option for this component.    admin(multi):      1onChange&#x3D;&amp;#123;(val: typeof gatewayOptions[number][&quot;value&quot;][]) &#x3D;&gt; setG">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-26T10:59:15.000Z">
+<meta property="article:modified_time" content="2022-06-26T11:17:38.525Z">
+<meta property="article:author" content="tee1365">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="tee1365's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">tee1365&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://tee1365.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-notice" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/26/notice/" class="article-date">
+  <time class="dt-published" datetime="2022-06-26T10:59:15.000Z" itemprop="datePublished">2022-06-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      flicket project notice
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="1-how-to-type-onChange-for-Select"><a href="#1-how-to-type-onChange-for-Select" class="headerlink" title="1. how to type onChange for Select"></a>1. how to type onChange for Select</h2><p>  gatewayOptions is the value of option for this component.</p>
+<p>   <strong>admin(multi)</strong>:  </p>
+   <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onChange=&#123;<span class="function">(<span class="params">val: <span class="keyword">typeof</span> gatewayOptions[<span class="built_in">number</span>][<span class="string">&quot;value&quot;</span>][]</span>) =&gt;</span> setGateway(val)&#125;</span><br></pre></td></tr></table></figure>
+
+<p>   <strong>admin(not multi)</strong>:  </p>
+   <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">onChange=&#123;<span class="function">(<span class="params">val: <span class="keyword">typeof</span> gatewayOptions[<span class="built_in">number</span>][<span class="string">&quot;value&quot;</span>]</span>) =&gt;</span> setGateway(val)&#125;</span><br><span class="line"><span class="string">``</span><span class="string">`  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">**customer**:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>ts</span><br><span class="line">onChange=&#123;<span class="function">(<span class="params">val: <span class="keyword">typeof</span> gatewayOptions[<span class="built_in">number</span>]</span>) =&gt;</span> setGateway(val)&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-add-console-error-as-the-second-parameter-of-handleSubmit"><a href="#2-add-console-error-as-the-second-parameter-of-handleSubmit" class="headerlink" title="2. add console.error as the second parameter of handleSubmit"></a>2. add console.error as the second parameter of handleSubmit</h2><h2 id="3-code-for-repeatable-queue"><a href="#3-code-for-repeatable-queue" class="headerlink" title="3. code for repeatable queue"></a>3. code for repeatable queue</h2><ol>
+<li><p>get all repeatable jobs</p>
+ <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">void</span> <span class="built_in">this</span>.automationQueue</span><br><span class="line">  .getRepeatableJobs()</span><br><span class="line">  .then(<span class="function">(<span class="params">res</span>) =&gt;</span> <span class="built_in">console</span>.log(res));</span><br></pre></td></tr></table></figure></li>
+<li><p>remove all repeatable jobs</p>
+ <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  <span class="built_in">void</span> <span class="built_in">this</span>.automationQueue.getRepeatableJobs().then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> r <span class="keyword">of</span> res) &#123;</span><br><span class="line">    <span class="built_in">void</span> <span class="built_in">this</span>.automationQueue.removeRepeatableByKey(r.key);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="4-testing"><a href="#4-testing" class="headerlink" title="4. testing"></a>4. testing</h2><ol>
+<li><p>test webhook:  </p>
+<p> run <code>ngrok http 3001</code><br> run backend<br> <code>https://1197-101-98-116-49.ngrok.io/graphql</code></p>
+</li>
+<li><p>to test facebook login:</p>
+<p> local-ssl-proxy –source 3002 –target 3000<br> <code>https://chiefs.flicket.localhost:3002/</code></p>
+</li>
+</ol>
+<h2 id="5-future-social-module"><a href="#5-future-social-module" class="headerlink" title="5. future social module"></a>5. future social module</h2><ol>
+<li><p>Screen recording</p>
+<p> create screen recordings, check Best Practices part when recording</p>
+<ol>
+<li>login flow (admin login)</li>
+<li>permission granting (admin login)</li>
+<li>Data Usage (mention overview and user social tab)</li>
+</ol>
+</li>
+<li><p>no action after finding a user</p>
+</li>
+<li><p>every 50 days -&gt; change refresh token automatically</p>
+</li>
+<li><p>currently igusername can be duplicate in the database</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tee1365.github.io/2022/06/26/notice/" data-id="cl4v7w0dp0000s4955qg69anr" data-title="flicket project notice" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/01/06/frontend-setup/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">frontend-setup</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/06/26/notice/">flicket project notice</a>
+          </li>
+        
+          <li>
+            <a href="/2022/01/06/frontend-setup/">frontend-setup</a>
+          </li>
+        
+          <li>
+            <a href="/2022/01/06/common/">common</a>
+          </li>
+        
+          <li>
+            <a href="/2022/01/06/sqlite/">sqlite</a>
+          </li>
+        
+          <li>
+            <a href="/2022/01/06/postgresql/">postgresql</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 tee1365<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

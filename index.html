@@ -71,6 +71,81 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-notice" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/26/notice/" class="article-date">
+  <time class="dt-published" datetime="2022-06-26T10:59:15.000Z" itemprop="datePublished">2022-06-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/26/notice/">flicket project notice</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="1-how-to-type-onChange-for-Select"><a href="#1-how-to-type-onChange-for-Select" class="headerlink" title="1. how to type onChange for Select"></a>1. how to type onChange for Select</h2><p>  gatewayOptions is the value of option for this component.</p>
+<p>   <strong>admin(multi)</strong>:  </p>
+   <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onChange=&#123;<span class="function">(<span class="params">val: <span class="keyword">typeof</span> gatewayOptions[<span class="built_in">number</span>][<span class="string">&quot;value&quot;</span>][]</span>) =&gt;</span> setGateway(val)&#125;</span><br></pre></td></tr></table></figure>
+
+<p>   <strong>admin(not multi)</strong>:  </p>
+   <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">onChange=&#123;<span class="function">(<span class="params">val: <span class="keyword">typeof</span> gatewayOptions[<span class="built_in">number</span>][<span class="string">&quot;value&quot;</span>]</span>) =&gt;</span> setGateway(val)&#125;</span><br><span class="line"><span class="string">``</span><span class="string">`  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">**customer**:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>ts</span><br><span class="line">onChange=&#123;<span class="function">(<span class="params">val: <span class="keyword">typeof</span> gatewayOptions[<span class="built_in">number</span>]</span>) =&gt;</span> setGateway(val)&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-add-console-error-as-the-second-parameter-of-handleSubmit"><a href="#2-add-console-error-as-the-second-parameter-of-handleSubmit" class="headerlink" title="2. add console.error as the second parameter of handleSubmit"></a>2. add console.error as the second parameter of handleSubmit</h2><h2 id="3-code-for-repeatable-queue"><a href="#3-code-for-repeatable-queue" class="headerlink" title="3. code for repeatable queue"></a>3. code for repeatable queue</h2><ol>
+<li><p>get all repeatable jobs</p>
+ <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">void</span> <span class="built_in">this</span>.automationQueue</span><br><span class="line">  .getRepeatableJobs()</span><br><span class="line">  .then(<span class="function">(<span class="params">res</span>) =&gt;</span> <span class="built_in">console</span>.log(res));</span><br></pre></td></tr></table></figure></li>
+<li><p>remove all repeatable jobs</p>
+ <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  <span class="built_in">void</span> <span class="built_in">this</span>.automationQueue.getRepeatableJobs().then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> r <span class="keyword">of</span> res) &#123;</span><br><span class="line">    <span class="built_in">void</span> <span class="built_in">this</span>.automationQueue.removeRepeatableByKey(r.key);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="4-testing"><a href="#4-testing" class="headerlink" title="4. testing"></a>4. testing</h2><ol>
+<li><p>test webhook:  </p>
+<p> run <code>ngrok http 3001</code><br> run backend<br> <code>https://1197-101-98-116-49.ngrok.io/graphql</code></p>
+</li>
+<li><p>to test facebook login:</p>
+<p> local-ssl-proxy –source 3002 –target 3000<br> <code>https://chiefs.flicket.localhost:3002/</code></p>
+</li>
+</ol>
+<h2 id="5-future-social-module"><a href="#5-future-social-module" class="headerlink" title="5. future social module"></a>5. future social module</h2><ol>
+<li><p>Screen recording</p>
+<p> create screen recordings, check Best Practices part when recording</p>
+<ol>
+<li>login flow (admin login)</li>
+<li>permission granting (admin login)</li>
+<li>Data Usage (mention overview and user social tab)</li>
+</ol>
+</li>
+<li><p>no action after finding a user</p>
+</li>
+<li><p>every 50 days -&gt; change refresh token automatically</p>
+</li>
+<li><p>currently igusername can be duplicate in the database</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tee1365.github.io/2022/06/26/notice/" data-id="cl4v7w0dp0000s4955qg69anr" data-title="flicket project notice" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-frontend-setup" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/01/06/frontend-setup/" class="article-date">
@@ -416,7 +491,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li></ul>
     </div>
   </div>
 
@@ -427,6 +502,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/06/26/notice/">flicket project notice</a>
+          </li>
         
           <li>
             <a href="/2022/01/06/frontend-setup/">frontend-setup</a>
@@ -442,10 +521,6 @@
         
           <li>
             <a href="/2022/01/06/postgresql/">postgresql</a>
-          </li>
-        
-          <li>
-            <a href="/2022/01/06/nestjs/">nestjs</a>
           </li>
         
       </ul>
