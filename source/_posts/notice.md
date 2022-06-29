@@ -18,7 +18,7 @@ tags:
 
    ```ts
    onChange={(val: typeof gatewayOptions[number]["value"]) => setGateway(val)}
-   ```  
+   ```
 
    **customer**:
 

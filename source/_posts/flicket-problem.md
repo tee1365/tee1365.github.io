@@ -30,7 +30,7 @@ solution: add `response.status(200).send('EVENT_RECEIVED');` in the controller
 
 solution: change the import controller from components to react-hook-form
 
-## 3. array.includes(value) value cannot be an object
+## 3. array.includes(value), value cannot be an object
 
 solution: use lodash some  
 `tempArr.includes(tempArrItem) -> some(tempArr, tempArrItem)`
