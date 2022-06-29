@@ -14,7 +14,7 @@
 <meta property="og:description" content="1. how to type onChange for Select  gatewayOptions is the value of option for this component.    admin(multi):      1onChange&#x3D;&amp;#123;(val: typeof gatewayOptions[number][&quot;value&quot;][]) &#x3D;&gt; setG">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-26T10:59:15.000Z">
-<meta property="article:modified_time" content="2022-06-26T11:17:38.525Z">
+<meta property="article:modified_time" content="2022-06-29T07:58:14.154Z">
 <meta property="article:author" content="tee1365">
 <meta name="twitter:card" content="summary">
   
@@ -100,7 +100,10 @@
    <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onChange=&#123;<span class="function">(<span class="params">val: <span class="keyword">typeof</span> gatewayOptions[<span class="built_in">number</span>][<span class="string">&quot;value&quot;</span>][]</span>) =&gt;</span> setGateway(val)&#125;</span><br></pre></td></tr></table></figure>
 
 <p>   <strong>admin(not multi)</strong>:  </p>
-   <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">onChange=&#123;<span class="function">(<span class="params">val: <span class="keyword">typeof</span> gatewayOptions[<span class="built_in">number</span>][<span class="string">&quot;value&quot;</span>]</span>) =&gt;</span> setGateway(val)&#125;</span><br><span class="line"><span class="string">``</span><span class="string">`  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">**customer**:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>ts</span><br><span class="line">onChange=&#123;<span class="function">(<span class="params">val: <span class="keyword">typeof</span> gatewayOptions[<span class="built_in">number</span>]</span>) =&gt;</span> setGateway(val)&#125;</span><br></pre></td></tr></table></figure>
+   <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onChange=&#123;<span class="function">(<span class="params">val: <span class="keyword">typeof</span> gatewayOptions[<span class="built_in">number</span>][<span class="string">&quot;value&quot;</span>]</span>) =&gt;</span> setGateway(val)&#125;</span><br></pre></td></tr></table></figure>
+
+<p>   <strong>customer</strong>:</p>
+   <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onChange=&#123;<span class="function">(<span class="params">val: <span class="keyword">typeof</span> gatewayOptions[<span class="built_in">number</span>]</span>) =&gt;</span> setGateway(val)&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="2-add-console-error-as-the-second-parameter-of-handleSubmit"><a href="#2-add-console-error-as-the-second-parameter-of-handleSubmit" class="headerlink" title="2. add console.error as the second parameter of handleSubmit"></a>2. add console.error as the second parameter of handleSubmit</h2><h2 id="3-code-for-repeatable-queue"><a href="#3-code-for-repeatable-queue" class="headerlink" title="3. code for repeatable queue"></a>3. code for repeatable queue</h2><ol>
 <li><p>get all repeatable jobs</p>
